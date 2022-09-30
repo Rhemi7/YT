@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../constants/styles.dart';
-import '../../utils/margin.dart';
-import '../../utils/resolution.dart';
+import '../../../constants/styles.dart';
+import '../../../utils/margin.dart';
+import '../../../utils/resolution.dart';
 
 class VideoTileWidget extends StatelessWidget {
   final String title;

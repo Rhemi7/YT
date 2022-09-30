@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_data_api/features/constants/styles.dart';
-import 'package:youtube_data_api/features/utils/margin.dart';
-
+import '../../../constants/styles.dart';
+import '../../../utils/margin.dart';
 import '../widgets/video_tile_widget.dart';
 
 class PlaylistInfoScreen extends StatefulWidget {

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_data_api/features/constants/styles.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
-
-import '../../../main.dart';
-import '../../constants/const.dart';
-import '../../utils/margin.dart';
-import '../../utils/resolution.dart';
+import '../../../constants/const.dart';
+import '../../../constants/styles.dart';
+import '../../../utils/margin.dart';
+import '../../../utils/resolution.dart';
 import '../widgets/playlist_tile_widget.dart';
-
 
 class HomeScreen extends StatefulWidget {
   static const routeName = "home_screen";
@@ -100,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Container(
                           width: Resolution.screenWidth(context),
                           height:
-                          Resolution.screenHeight(context, percent: 0.12),
+                              Resolution.screenHeight(context, percent: 0.12),
                           color: Colors.greenAccent,
                         ),
                         const Center(child: YMargin(10)),
@@ -132,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         for (int i = 0; i < 3; i++)
                           const VideoTileWidget(
                             title:
-                            "First line First line First line First line",
+                                "First line First line First line First line",
                             creator: 'Second Line',
                             date: "Third line 2",
                             views: "Third line 3",
