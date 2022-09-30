@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_data_api/features/constants/const.dart';
 import 'package:youtube_data_api/features/constants/styles.dart';
+import 'package:youtube_data_api/features/presentation/screens/playlist_info_screen.dart';
 import 'package:youtube_data_api/features/utils/margin.dart';
 import 'package:youtube_data_api/features/utils/resolution.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         elevation: 0.0,
         // backgroundColor:
       )),
-      home: const HomeScreen(),
+      home: const PlaylistInfoScreen(),
     );
   }
 }

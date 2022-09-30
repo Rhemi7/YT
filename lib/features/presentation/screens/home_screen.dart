@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_data_api/features/constants/styles.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
 
 import '../../../main.dart';
@@ -9,6 +10,7 @@ import '../widgets/playlist_tile_widget.dart';
 
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = "home_screen";
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -109,8 +111,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         const YMargin(15),
                         const Text(
                           channelName,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 17),
+                          style: AppTextStyle.headingText,
                         ),
                         const YMargin(15),
                         const Text(
