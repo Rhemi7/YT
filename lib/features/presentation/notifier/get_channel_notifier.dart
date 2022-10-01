@@ -13,8 +13,8 @@ class GetChannelNotifier extends StateNotifier<GetChannelState> {
 
       var result = await getChannelUsecase(NoParams());
       result.fold((l) => null, (r) {
-        print("channelUrl ${r.items[0].snippet.description}");
-        state = GetChannelLoaded(item: r.items[0]);
+        print("channelUrl ${r.items![0].snippet?.description}");
+        state = GetChannelLoaded(item: r.items![0]);
       });
     } catch (e) {
       state = GetChannelError(message: "An error occured");
