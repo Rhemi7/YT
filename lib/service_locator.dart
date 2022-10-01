@@ -28,7 +28,7 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<GetChannelRemoteDataSource>(() => GetChannelRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<ChannelRepository>(() => ChannelRepoImpl(sl(), sl()));
+  sl.registerLazySingleton<ChannelRepository>(() => ChannelRepoImpl(remoteDatasource: sl(), networkInfo: sl()));
 
   sl.registerLazySingleton<GetChannel>(() => GetChannel(sl()));
 
