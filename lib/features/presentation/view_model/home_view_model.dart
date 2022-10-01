@@ -11,7 +11,7 @@ class HomeViewModel {
   channel() async {
     var result = await getChannelUsecase(NoParams());
     result.fold((l) => null, (r) {
-      print("channel ${r.items[0].snippet.customUrl}");
+      print("channel ${r.items![0].snippet!.customUrl}");
     });
   }
 }

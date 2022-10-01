@@ -125,11 +125,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
                                       image: DecorationImage(
 
-                                          image: NetworkImage(channelState
-                                              .item!
-                                              .brandingSettings
-                                              .image
-                                              .bannerExternalUrl), fit: BoxFit.fitWidth)),
+                                          image: NetworkImage(
+                                            channelState.item!.brandingSettings!.image!.bannerExternalUrl.toString()
+                                              // channelState.item.brandingSettings.image!.bannerExternalUrl
+                                              ), fit: BoxFit.fitWidth)),
                                 ),
                                 const Center(child: YMargin(10)),
                                 CircleAvatar(
@@ -137,19 +136,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                   backgroundColor: Colors.blue,
                                   backgroundImage: NetworkImage(channelState
                                       .item!
-                                      .snippet
-                                      .thumbnails
-                                      .thumbnailsDefault
-                                      .url),
+                                      .snippet!
+                                      .thumbnails!
+                                      .thumbnailsDefault!
+                                      .url.toString()),
                                 ),
                                 const YMargin(15),
                                 Text(
-                                  channelState.item!.snippet.title,
+                                  channelState.item!.snippet!.title.toString(),
                                   style: AppTextStyle.headingText,
                                 ),
                                 const YMargin(15),
                                 Text(
-                                  "${channelState.item!.statistics.subscriberCount} subscribers",
+                                  "${channelState.item!.statistics!.subscriberCount} subscribers",
                                   style: const TextStyle(
                                     fontSize: 13,
                                   ),
@@ -159,7 +158,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Text(
-                                    channelState.item!.snippet.description,
+                                    channelState.item!.snippet!.description.toString(),
                                     style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.grey.shade400),
