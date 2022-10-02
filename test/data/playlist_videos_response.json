@@ -2,8 +2,7 @@
   "kind": "youtube#playlistItemListResponse",
   "etag": "JLBFmIcpInGbggWalPwqWLJZyVM",
   "nextPageToken": "EAAaBlBUOkNBVQ",
-  "items": [
-  ],
+  "items": [],
   "pageInfo": {
     "totalResults": 15,
     "resultsPerPage": 5

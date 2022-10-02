@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
+import 'package:youtube_data_api/features/domain/entity/playlist_video_entity.dart';
 
 PlaylistVideoResponse playlistVideoResponseFromJson(String str) =>
     PlaylistVideoResponse.fromJson(json.decode(str));
@@ -11,7 +12,7 @@ PlaylistVideoResponse playlistVideoResponseFromJson(String str) =>
 String playlistVideoResponseToJson(PlaylistVideoResponse data) =>
     json.encode(data.toJson());
 
-class PlaylistVideoResponse {
+class PlaylistVideoResponse extends PlaylistVideoEntity{
   PlaylistVideoResponse({
     this.kind,
     this.etag,
