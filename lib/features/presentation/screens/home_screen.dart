@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_state.dart';
+import 'package:youtube_data_api/features/presentation/notifier/get_playlist/get_playlist_state.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_videos_state.dart';
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
@@ -31,8 +32,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     HomeViewModel(sl()).channel();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.watch(getChannelNotifierProvider.notifier).getFavChannel();
-      ref.watch(getVideosNotifierProvider.notifier).getRecentVideos();
-      ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
     });
 
     super.initState();
@@ -213,30 +212,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       ],
                     ),
                   ),
-                  Consumer(builder:
-                      (BuildContext context, WidgetRef ref, Widget? child) {
-                    final state = ref.watch(getVideosNotifierProvider);
-                    if (state is GetVideosLoading) {
-                      return const CircularProgressIndicator();
-                    } else if (state is GetVideosLoaded) {
-                      return ListView.builder(
-                        itemCount: state.items!.length,
-                        itemBuilder: (BuildContext context, int i) {
-                          return VideoTileWidget(
-                            video: state.items![i],
-                          );
-                        },
-                      );
-                      // }
-                    }
-                    return const SizedBox.shrink();
-                  }),
-                  ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return const PlaylistTileWidget();
-                    },
-                  ),
+                  VideosTabView(),
+                  PlaylistTabView(),
                   Column(
                     children: [
                       Container(
@@ -428,5 +405,91 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ),
       ),
     );
+  }
+}
+
+class VideosTabView extends ConsumerStatefulWidget {
+  const VideosTabView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  ConsumerState<VideosTabView> createState() => _VideosTabViewState();
+}
+
+class _VideosTabViewState extends ConsumerState<VideosTabView> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.watch(getVideosNotifierProvider.notifier).getRecentVideos();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+      final state = ref.watch(getVideosNotifierProvider);
+      if (state is GetVideosLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is GetVideosLoaded) {
+        return ListView.builder(
+          itemCount: state.items!.length,
+          itemBuilder: (BuildContext context, int i) {
+            return VideoTileWidget(
+              video: state.items![i],
+            );
+          },
+        );
+        // }
+      }
+      return const SizedBox.shrink();
+    });
+  }
+}
+
+class PlaylistTabView extends ConsumerStatefulWidget {
+  const PlaylistTabView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  ConsumerState<PlaylistTabView> createState() => _PlaylistTabViewState();
+}
+
+class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          final state = ref.watch(getPlaylistNotifierProvider);
+          if (state is GetPlaylistLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is GetPlaylistLoaded) {
+            return ListView.builder(
+              itemCount: state.items!.length,
+              itemBuilder: (BuildContext context, int i) {
+
+                return PlaylistTileWidget(playlist: state.items![i]);
+              },
+            );
+            // }
+          }
+          return const SizedBox.shrink();
+        });
   }
 }

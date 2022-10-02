@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_data_api/features/data/model/playlist_response.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
 
 
 class PlaylistTileWidget extends StatelessWidget {
-  const PlaylistTileWidget({
+  final Item playlist;
+   const PlaylistTileWidget({
     Key? key,
+    required this.playlist,
   }) : super(key: key);
 
   @override
@@ -19,11 +22,13 @@ class PlaylistTileWidget extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: Resolution.screenWidth(context,
-                    percent: 0.45),
-                height: Resolution.screenHeight(context,
-                    percent: 0.14),
-                color: Colors.greenAccent,
+                width: Resolution.screenWidth(context, percent: 0.45),
+                height: Resolution.screenHeight(context, percent: 0.14),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(playlist.snippet!.thumbnails!.medium!.url.toString()
+                        ),
+                        fit: BoxFit.fitWidth)),
               ),
               Positioned(
                   right: 0,
@@ -36,8 +41,8 @@ class PlaylistTileWidget extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("2"),
-                        Icon(Icons.list_rounded)
+                        Text(playlist.contentDetails!.itemCount.toString()),
+                        const Icon(Icons.list_rounded)
                       ],
                     ),
                   ))
@@ -48,15 +53,15 @@ class PlaylistTileWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                    'First line First line First line First line'),
                 Text(
-                  'Second Line',
+                    playlist.snippet!.title!.toString()),
+                Text(
+                  playlist.snippet!.channelTitle!.toString(),
                   style: AppTextStyle.descText
                       .copyWith(fontSize: 11),
                 ),
                 Text(
-                  'Third line',
+                  "${playlist.contentDetails!.itemCount} videos",
                   style: AppTextStyle.descText
                       .copyWith(fontSize: 11),
                 )

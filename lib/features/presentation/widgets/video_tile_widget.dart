@@ -33,20 +33,9 @@ class VideoTileWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(video!.snippet!.thumbnails!.medium!.url.toString()
-                        // .item!
-                        // .brandingSettings!
-                        // .image!
-                        // .bannerExternalUrl
-                        // .toString()
-                      // channelState.item.brandingSettings.image!.bannerExternalUrl
                     ),
                     fit: BoxFit.fitWidth)),
           ),
-          // Container(
-          //   width: Resolution.screenWidth(context, percent: 0.45),
-          //   height: Resolution.screenHeight(context, percent: 0.14),
-          //   color: Colors.greenAccent,
-          // ),
           const XMargin(10),
           Expanded(
             child: Column(

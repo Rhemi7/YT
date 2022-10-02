@@ -15,7 +15,7 @@ class GetPlaylistNotifier extends StateNotifier<GetPlaylistState> {
       var result = await getPlaylist(NoParams());
       result.fold((l) => null, (r) {
         print("playlist ${r.items![0].snippet?.description}");
-        state = GetPlaylistLoaded(item: r.items![0]);
+        state = GetPlaylistLoaded(r.items!);
       });
     } catch (e) {
       state = GetPlaylistError(message: "An error occured");
