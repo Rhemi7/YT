@@ -6,11 +6,14 @@
 
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+import 'package:youtube_data_api/features/domain/entity/playlist_entity.dart';
+
 PlaylistResponse playlistResponseFromJson(String str) => PlaylistResponse.fromJson(json.decode(str));
 
 String playlistResponseToJson(PlaylistResponse data) => json.encode(data.toJson());
 
-class PlaylistResponse {
+class PlaylistResponse extends PlaylistEntity{
   PlaylistResponse({
     this.kind,
     this.etag,
@@ -207,7 +210,7 @@ class Default {
   };
 }
 
-class PageInfo {
+class PageInfo extends Equatable{
   PageInfo({
     this.totalResults,
     this.resultsPerPage,
@@ -225,5 +228,9 @@ class PageInfo {
     "totalResults": totalResults,
     "resultsPerPage": resultsPerPage,
   };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [totalResults, resultsPerPage];
 }
 

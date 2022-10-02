@@ -1,12 +1,12 @@
-import 'package:equatable/equatable.dart';
-import 'package:youtube_data_api/features/data/model/videos_response.dart';
 
-class VideosEntity extends Equatable {
-  const VideosEntity({
+import 'package:equatable/equatable.dart';
+import 'package:youtube_data_api/features/data/model/playlist_response.dart';
+
+class PlaylistEntity extends Equatable {
+  PlaylistEntity({
     this.kind,
     this.etag,
     this.nextPageToken,
-    this.regionCode,
     this.pageInfo,
     this.items,
   });
@@ -14,11 +14,10 @@ class VideosEntity extends Equatable {
   final String? kind;
   final String? etag;
   final String? nextPageToken;
-  final String? regionCode;
   final PageInfo? pageInfo;
   final List<Item>? items;
 
   @override
   // TODO: implement props
-  List<Object?> get props => [kind, etag, nextPageToken, regionCode, pageInfo, items];
+  List<Object?> get props => [kind, etag, nextPageToken, pageInfo, items];
 }
