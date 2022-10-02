@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:youtube_data_api/features/data/datasources/get_channel_remote_datasource.dart';
-import 'package:youtube_data_api/features/data/datasources/get_playlist_remote_datasource.dart';
+import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/datasources/get_videos_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/repository/get_channel_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/get_latest_videos_repo_impl.dart';
@@ -53,7 +53,7 @@ Future<void> setUpLocator() async {
 
   //Playlist
 
-  sl.registerLazySingleton<GetPlaylistRemoteDataSource>(() => GetPlaylistRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<PlaylistRemoteDataSource>(() => PlaylistRemoteDatasourceImpl(sl()));
 
   sl.registerLazySingleton<GetPlaylistRepository>(() => GetPlaylistRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
 

@@ -2,14 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/network_info.dart';
-import 'package:youtube_data_api/features/data/datasources/get_playlist_remote_datasource.dart';
+import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/model/playlist_response.dart';
 import 'package:youtube_data_api/features/data/repository/get_playlist_repo_impl.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 class MockGetPlaylistRemoteDataSource extends Mock
-    implements GetPlaylistRemoteDataSource {}
+    implements PlaylistRemoteDataSource {}
 
 void main() {
   late MockGetPlaylistRemoteDataSource mockRemoteDataSource;

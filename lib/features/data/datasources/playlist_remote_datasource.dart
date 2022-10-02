@@ -3,13 +3,15 @@ import 'package:http/http.dart' as http;
 import '../../../constants/const.dart';
 import '../../../core/error/failure.dart';
 import '../model/playlist_response.dart';
-abstract class GetPlaylistRemoteDataSource {
+abstract class PlaylistRemoteDataSource {
   Future<PlaylistResponse> getPlaylist();
+
+  Future getPlayListVideos();
 }
 
-class GetPlaylistRemoteDatasourceImpl implements GetPlaylistRemoteDataSource {
+class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
   late final http.Client client;
-  GetPlaylistRemoteDatasourceImpl(this.client);
+  PlaylistRemoteDatasourceImpl(this.client);
 
   @override
   Future<PlaylistResponse> getPlaylist() async {
@@ -24,5 +26,11 @@ class GetPlaylistRemoteDatasourceImpl implements GetPlaylistRemoteDataSource {
     } else {
       throw ServerException();
     }
+  }
+
+  @override
+  Future getPlayListVideos() {
+    // TODO: implement getPlayListVideos
+    throw UnimplementedError();
   }
 }

@@ -4,12 +4,12 @@ import 'package:dartz/dartz.dart';
 import '../../../core/error/failure.dart';
 import '../../../core/network_info.dart';
 import '../../domain/repository/get_playlist_repository.dart';
-import '../datasources/get_playlist_remote_datasource.dart';
+import '../datasources/playlist_remote_datasource.dart';
 import '../model/playlist_response.dart';
 
 class GetPlaylistRepoImpl implements GetPlaylistRepository {
   final NetworkInfo networkInfo;
-  GetPlaylistRemoteDataSource  remoteDatasource;
+  PlaylistRemoteDataSource  remoteDatasource;
   GetPlaylistRepoImpl({required this.networkInfo, required this.remoteDatasource});
 
   @override

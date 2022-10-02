@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 import 'package:youtube_data_api/constants/const.dart';
 import 'package:youtube_data_api/core/error/failure.dart';
-import 'package:youtube_data_api/features/data/datasources/get_playlist_remote_datasource.dart';
+import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/model/playlist_response.dart';
 
 import '../../../data/data_reader.dart';
@@ -13,12 +13,12 @@ class MockClient extends Mock implements http.Client {}
 void main() {
 
   late MockClient client;
-  late GetPlaylistRemoteDatasourceImpl dataSource;
+  late PlaylistRemoteDatasourceImpl dataSource;
 
   var url = Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=snippet,contentDetails&maxResults=10');
   setUp(() {
     client = MockClient();
-    dataSource = GetPlaylistRemoteDatasourceImpl (client);
+    dataSource = PlaylistRemoteDatasourceImpl (client);
   });
 
   group('Get Playlist', () {
