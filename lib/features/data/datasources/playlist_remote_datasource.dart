@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:youtube_data_api/features/data/model/playlist_videos_response.dart';
 
 import '../../../constants/const.dart';
 import '../../../core/error/failure.dart';
@@ -6,7 +7,7 @@ import '../model/playlist_response.dart';
 abstract class PlaylistRemoteDataSource {
   Future<PlaylistResponse> getPlaylist();
 
-  Future getPlayListVideos();
+  Future<PlaylistVideoResponse> getPlayListVideos(String playlistId);
 }
 
 class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
@@ -29,8 +30,18 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
   }
 
   @override
-  Future getPlayListVideos() {
-    // TODO: implement getPlayListVideos
-    throw UnimplementedError();
+  Future<PlaylistVideoResponse> getPlayListVideos(String playlistID) async {
+    String part = "snippet";
+    var response = await client.get(
+        Uri.parse('$baseUrl/playlistItems?playlistId=$playlistID&key=$apIkey&part=$part'),
+        headers: headers);
+
+    if (response.statusCode.toString().startsWith("2")) {
+      var playlistVideoResponse = playlistVideoResponseFromJson(response.body);
+      return playlistVideoResponse;
+    } else {
+      print('Erro main');
+      throw ServerException();
+    }
   }
 }

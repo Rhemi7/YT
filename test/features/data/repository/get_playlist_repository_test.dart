@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/network_info.dart';
 import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/model/playlist_response.dart';
-import 'package:youtube_data_api/features/data/repository/get_playlist_repo_impl.dart';
+import 'package:youtube_data_api/features/data/repository/playlist_repo_impl.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
@@ -14,11 +14,11 @@ class MockGetPlaylistRemoteDataSource extends Mock
 void main() {
   late MockGetPlaylistRemoteDataSource mockRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
-  late GetPlaylistRepoImpl repository;
+  late PlaylistRepoImpl repository;
 
   mockRemoteDataSource = MockGetPlaylistRemoteDataSource();
   mockNetworkInfo = MockNetworkInfo();
-  repository = GetPlaylistRepoImpl(
+  repository = PlaylistRepoImpl(
       networkInfo: mockNetworkInfo, remoteDatasource: mockRemoteDataSource);
 
   void runTestsOnline(Function body) {

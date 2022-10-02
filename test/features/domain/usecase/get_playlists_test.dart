@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/usecases/usecases.dart';
 import 'package:youtube_data_api/features/data/model/playlist_response.dart';
-import 'package:youtube_data_api/features/domain/repository/get_playlist_repository.dart';
+import 'package:youtube_data_api/features/domain/repository/playlist_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 
-class MockLatestVideoRepository extends Mock implements GetPlaylistRepository {}
+class MockLatestVideoRepository extends Mock implements PlaylistRepository {}
 
 void main() {
 
