@@ -9,28 +9,33 @@ import '../../data/model/playlist_videos_response.dart';
 
 class PlaylistVideoTileWidget extends StatelessWidget {
   final Item? video;
+  final String? id;
 
   const PlaylistVideoTileWidget({
     Key? key,
     this.video,
+    this.id,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10.0, top: 15),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => VideoPlaylistScreen(
-                        id: video!.snippet!.resourceId!.videoId,
-                      )));
-        },
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => VideoPlaylistScreen(
+                      id: video!.snippet!.resourceId!.videoId,
+                  item: video,
+                    )));
+      },
+      child: Container(
+        color: id == video!.snippet!.resourceId!.videoId ?  Colors.brown.shade600 : Colors.brown.shade600.withOpacity(0),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const XMargin(10),
             Container(
               width: Resolution.screenWidth(context, percent: 0.48),
               height: Resolution.screenHeight(context, percent: 0.13),
@@ -82,7 +87,8 @@ class PlaylistVideoTileWidget extends StatelessWidget {
                     Icons.share_rounded,
                     size: 12,
                   ),
-                ))
+                )),
+            const XMargin(10),
           ],
         ),
       ),

@@ -52,7 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ),
         body: Column(
           children: [
-             TabBar(
+            TabBar(
               // controller: tabController,
               isScrollable: true,
               indicatorColor: Colors.white,
@@ -150,12 +150,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                 const YMargin(15),
                                 Text(
                                   channelState.item!.snippet!.title.toString(),
-                                  style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 22)),
+                                  style: AppTextStyle.headingText.copyWith(
+                                      fontSize:
+                                          Resolution.textSize(context, 22)),
                                 ),
                                 const YMargin(15),
                                 Text(
                                   "${channelState.item!.statistics!.subscriberCount} subscribers",
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                     fontSize: Resolution.textSize(context, 16),
                                   ),
                                 ),
@@ -167,7 +169,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                     channelState.item!.snippet!.description
                                         .toString(),
                                     style: TextStyle(
-                                        fontSize: Resolution.textSize(context, 16),
+                                        fontSize:
+                                            Resolution.textSize(context, 16),
                                         color: Colors.grey.shade400),
                                   ),
                                 ),
@@ -471,25 +474,23 @@ class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
-          final state = ref.watch(getPlaylistNotifierProvider);
-          if (state is GetPlaylistLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is GetPlaylistLoaded) {
-            return ListView.builder(
-              itemCount: state.items!.length,
-              itemBuilder: (BuildContext context, int i) {
-
-                return PlaylistTileWidget(playlist: state.items![i]);
-              },
-            );
-            // }
-          }
-          return const SizedBox.shrink();
-        });
+      final state = ref.watch(getPlaylistNotifierProvider);
+      if (state is GetPlaylistLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is GetPlaylistLoaded) {
+        return ListView.builder(
+          itemCount: state.items!.length,
+          itemBuilder: (BuildContext context, int i) {
+            return PlaylistTileWidget(playlist: state.items![i]);
+          },
+        );
+        // }
+      }
+      return const SizedBox.shrink();
+    });
   }
 }
