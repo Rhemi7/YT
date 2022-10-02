@@ -32,6 +32,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.watch(getChannelNotifierProvider.notifier).getFavChannel();
       ref.watch(getVideosNotifierProvider.notifier).getRecentVideos();
+      ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
     });
 
     super.initState();
