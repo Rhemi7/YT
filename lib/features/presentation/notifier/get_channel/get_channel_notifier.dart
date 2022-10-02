@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:youtube_data_api/features/presentation/notifier/get_channel_state.dart';
-import '../../../core/usecases/usecases.dart';
-import '../../domain/usecase/get_channel.dart';
+import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_state.dart';
+import '../../../../core/usecases/usecases.dart';
+import '../../../domain/usecase/get_channel.dart';
 
 class GetChannelNotifier extends StateNotifier<GetChannelState> {
   GetChannel getChannelUsecase;

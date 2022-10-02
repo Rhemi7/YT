@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:youtube_data_api/features/presentation/notifier/get_channel_notifier.dart';
-import 'package:youtube_data_api/features/presentation/notifier/get_channel_state.dart';
+import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
+import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_state.dart';
+import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_videos_state.dart';
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     HomeViewModel(sl()).channel();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.watch(getChannelNotifierProvider.notifier).getFavChannel();
+      ref.watch(getVideosNotifierProvider.notifier).getRecentVideos();
     });
 
     super.initState();
@@ -37,7 +39,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    final provider = ref.watch(getChannelNotifierProvider.notifier);
+    final provider = ref.watch(getVideosNotifierProvider.notifier);
 
     return DefaultTabController(
       length: 5,
@@ -122,13 +124,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                   height: Resolution.screenHeight(context,
                                       percent: 0.12),
                                   decoration: BoxDecoration(
-
                                       image: DecorationImage(
-
-                                          image: NetworkImage(
-                                            channelState.item!.brandingSettings!.image!.bannerExternalUrl.toString()
+                                          image: NetworkImage(channelState
+                                                  .item!
+                                                  .brandingSettings!
+                                                  .image!
+                                                  .bannerExternalUrl
+                                                  .toString()
                                               // channelState.item.brandingSettings.image!.bannerExternalUrl
-                                              ), fit: BoxFit.fitWidth)),
+                                              ),
+                                          fit: BoxFit.fitWidth)),
                                 ),
                                 const Center(child: YMargin(10)),
                                 CircleAvatar(
@@ -139,7 +144,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                       .snippet!
                                       .thumbnails!
                                       .thumbnailsDefault!
-                                      .url.toString()),
+                                      .url
+                                      .toString()),
                                 ),
                                 const YMargin(15),
                                 Text(
@@ -158,7 +164,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   child: Text(
-                                    channelState.item!.snippet!.description.toString(),
+                                    channelState.item!.snippet!.description
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.grey.shade400),
@@ -169,28 +176,60 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           }
                           return const SizedBox.shrink();
                         }),
-                        for (int i = 0; i < 3; i++)
-                          const VideoTileWidget(
-                            title:
-                                "First line First line First line First line",
-                            creator: 'Second Line',
-                            date: "Third line 2",
-                            views: "Third line 3",
-                          )
+                        // if (provider.listItem.isNotEmpty)
+                        //   for (int i = 0; i < 3; i++)
+                        //     // for(var item in state.items!) {
+                        //
+                        //     VideoTileWidget(video: provider.listItem[i])
+
+                        // Consumer(builder: (BuildContext context, WidgetRef ref,
+                        //     Widget? child) {
+                        //   final state = ref.watch(getVideosNotifierProvider);
+                        //   if (state is GetVideosLoading) {
+                        //     return const CircularProgressIndicator();
+                        //   } else if (state is GetVideosLoaded) {
+                        //     for (int i = 0; i < 3; i++) {
+                        //       // for(var item in state.items!) {
+                        //
+                        //       return VideoTileWidget(
+                        //           video: provider.listItem[i]);
+                        //     }
+                        //     print('videos loaded');
+                        //     // Container(
+                        //     //   height: 200,
+                        //     //   child: ListView.builder(
+                        //     //     itemCount: 3,
+                        //     //     itemBuilder: (BuildContext context, int i) {
+                        //     //       return VideoTileWidget(
+                        //     //         video:state.items![i] ,
+                        //     //       );
+                        //     //     },
+                        //     //   ),
+                        //     // );
+                        //   }
+                        //   return const SizedBox.shrink();
+                        // })
                       ],
                     ),
                   ),
-                  ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return const VideoTileWidget(
-                        title: "First line First line First line First line",
-                        creator: 'Second Line',
-                        date: "Third line 2",
-                        views: "Third line 3",
+                  Consumer(builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                    final state = ref.watch(getVideosNotifierProvider);
+                    if (state is GetVideosLoading) {
+                      return const CircularProgressIndicator();
+                    } else if (state is GetVideosLoaded) {
+                      return ListView.builder(
+                        itemCount: state.items!.length,
+                        itemBuilder: (BuildContext context, int i) {
+                          return VideoTileWidget(
+                            video: state.items![i],
+                          );
+                        },
                       );
-                    },
-                  ),
+                      // }
+                    }
+                    return const SizedBox.shrink();
+                  }),
                   ListView.builder(
                     itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
