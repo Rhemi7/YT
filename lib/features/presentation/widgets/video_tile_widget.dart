@@ -28,8 +28,8 @@ class VideoTileWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: Resolution.screenWidth(context, percent: 0.45),
-            height: Resolution.screenHeight(context, percent: 0.14),
+            width: Resolution.screenWidth(context, percent: 0.5),
+            height: Resolution.screenHeight(context, percent: 0.13),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(video!.snippet!.thumbnails!.medium!.url.toString()
@@ -38,20 +38,21 @@ class VideoTileWidget extends StatelessWidget {
           ),
           const XMargin(10),
           Expanded(
+            // flex: 45,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    video!.snippet!.title.toString()),
+                    video!.snippet!.title.toString(), style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 17), fontWeight: FontWeight.w400),),
                 Text(
                   video!.snippet!.channelTitle.toString(),
-                  style: AppTextStyle.descText.copyWith(fontSize: 11),
+                  style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
                 ),
                 Row(
                   children: [
                     Text(
                       video!.snippet!.publishTime!.toIso8601String(),
-                      style: AppTextStyle.descText.copyWith(fontSize: 11),
+                      style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
                     ),
                     const XMargin(2),
                     CircleAvatar(

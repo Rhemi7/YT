@@ -52,7 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         ),
         body: Column(
           children: [
-            const TabBar(
+             TabBar(
               // controller: tabController,
               isScrollable: true,
               indicatorColor: Colors.white,
@@ -61,7 +61,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   child: Text(
                     home,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: Resolution.textSize(context, 20),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   child: Text(
                     videos,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: Resolution.textSize(context, 20),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -79,7 +79,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   child: Text(
                     playlists,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: Resolution.textSize(context, 20),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -88,7 +88,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   child: Text(
                     info,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: Resolution.textSize(context, 20),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -97,7 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   child: Text(
                     info,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: Resolution.textSize(context, 20),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -150,13 +150,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                 const YMargin(15),
                                 Text(
                                   channelState.item!.snippet!.title.toString(),
-                                  style: AppTextStyle.headingText,
+                                  style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 22)),
                                 ),
                                 const YMargin(15),
                                 Text(
                                   "${channelState.item!.statistics!.subscriberCount} subscribers",
-                                  style: const TextStyle(
-                                    fontSize: 13,
+                                  style:  TextStyle(
+                                    fontSize: Resolution.textSize(context, 16),
                                   ),
                                 ),
                                 const YMargin(15),
@@ -167,7 +167,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                     channelState.item!.snippet!.description
                                         .toString(),
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: Resolution.textSize(context, 16),
                                         color: Colors.grey.shade400),
                                   ),
                                 ),

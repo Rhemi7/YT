@@ -5,10 +5,9 @@ import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
 
-
 class PlaylistTileWidget extends StatelessWidget {
   final Item playlist;
-   const PlaylistTileWidget({
+  const PlaylistTileWidget({
     Key? key,
     required this.playlist,
   }) : super(key: key);
@@ -17,7 +16,11 @@ class PlaylistTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => PlaylistInfoScreen(playlistItem: playlist)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    PlaylistInfoScreen(playlistItem: playlist)));
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 10.0, top: 15),
@@ -27,12 +30,13 @@ class PlaylistTileWidget extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  width: Resolution.screenWidth(context, percent: 0.45),
-                  height: Resolution.screenHeight(context, percent: 0.14),
+                  width: Resolution.screenWidth(context, percent: 0.5),
+                  height: Resolution.screenHeight(context, percent: 0.13),
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(playlist.snippet!.thumbnails!.medium!.url.toString()
-                          ),
+                          image: NetworkImage(playlist
+                              .snippet!.thumbnails!.medium!.url
+                              .toString()),
                           fit: BoxFit.fitWidth)),
                 ),
                 Positioned(
@@ -40,8 +44,7 @@ class PlaylistTileWidget extends StatelessWidget {
                     top: 0,
                     bottom: 0,
                     child: Container(
-                      width: Resolution.screenWidth(context,
-                          percent: 0.2),
+                      width: Resolution.screenWidth(context, percent: 0.2),
                       color: Colors.black.withOpacity(0.6),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,16 +62,20 @@ class PlaylistTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      playlist.snippet!.title!.toString()),
+                    playlist.snippet!.title!.toString(),
+                    style: AppTextStyle.headingText.copyWith(
+                        fontSize: Resolution.textSize(context, 16),
+                        fontWeight: FontWeight.w400),
+                  ),
                   Text(
                     playlist.snippet!.channelTitle!.toString(),
                     style: AppTextStyle.descText
-                        .copyWith(fontSize: 11),
+                        .copyWith(fontSize: Resolution.textSize(context, 13)),
                   ),
                   Text(
                     "${playlist.contentDetails!.itemCount} videos",
                     style: AppTextStyle.descText
-                        .copyWith(fontSize: 11),
+                        .copyWith(fontSize: Resolution.textSize(context, 13)),
                   )
                 ],
               ),

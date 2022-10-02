@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_playlist_videos/get_playlist_videos_state.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
+import '../../../utils/resolution.dart';
 import '../../data/model/playlist_response.dart';
 import '../provider/provider.dart';
 import '../widgets/playlist_video_tile_widget.dart';
@@ -49,7 +50,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 child: Text(
                   widget.playlistItem.snippet!.title!.toString(),
                   style: AppTextStyle.headingText
-                      .copyWith(fontWeight: FontWeight.w600),
+                      .copyWith(fontWeight: FontWeight.w600, fontSize: Resolution.textSize(context, 22)),
                 ),
               ),
               Padding(
@@ -57,7 +58,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 child: Text(
                   widget.playlistItem.snippet!.channelTitle.toString(),
                   style: AppTextStyle.headingText
-                      .copyWith(fontWeight: FontWeight.w500, fontSize: 14.0),
+                      .copyWith(fontWeight: FontWeight.w500, fontSize: Resolution.textSize(context, 17)),
                 ),
               ),
               const YMargin(10),
@@ -65,7 +66,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.playlistItem.snippet!.description.toString(),
-                  style: AppTextStyle.descText,
+                  style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 16)),
                 ),
               ),
               const YMargin(25),
