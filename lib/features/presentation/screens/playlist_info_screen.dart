@@ -12,36 +12,40 @@ class PlaylistInfoScreen extends ConsumerStatefulWidget {
   static const routeName = "playlist_info_screen";
   final Item playlistItem;
 
-  const PlaylistInfoScreen({Key? key, required this.playlistItem}) : super(key: key);
+  const PlaylistInfoScreen({Key? key, required this.playlistItem})
+      : super(key: key);
 
   @override
   ConsumerState<PlaylistInfoScreen> createState() => _PlaylistInfoScreenState();
 }
 
 class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
-  
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.watch(getPlaylistVideosNotifierProvider.notifier).getVideosInPlaylist(widget.playlistItem.id.toString());
+      ref
+          .watch(getPlaylistVideosNotifierProvider.notifier)
+          .getVideosInPlaylist(widget.playlistItem.id.toString());
     });
     super.initState();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Consumer(builder: (BuildContext context, WidgetRef ref, Widget? child) {
+      body: Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
         final state = ref.watch(getPlaylistVideosNotifierProvider);
         if (state is GetPlaylistVideosLoading) {
-          return const Center(child: CircularProgressIndicator(),);
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (state is GetPlaylistVideosLoaded) {
           return ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.all( 8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.playlistItem.snippet!.title!.toString(),
                   style: AppTextStyle.headingText
@@ -67,7 +71,11 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
               const YMargin(25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text("${widget.playlistItem.contentDetails!.itemCount} Videos", style: AppTextStyle.descText,),
+                child: Text(
+                  "${widget.playlistItem.contentDetails!.itemCount} Videos",
+                  style: AppTextStyle.descText
+                      .copyWith(fontWeight: FontWeight.w700),
+                ),
               ),
               ListView.builder(
                 itemCount: state.items!.length,
@@ -82,7 +90,9 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
             ],
           );
         } else if (state is GetPlaylistVideosError) {
-          Center(child: Text(state.message),);
+          Center(
+            child: Text(state.message),
+          );
         }
         return const SizedBox.shrink();
       }),

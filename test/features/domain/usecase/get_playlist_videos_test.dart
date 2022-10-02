@@ -8,27 +8,26 @@ import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dar
 class MockPlaylistRepository extends Mock implements PlaylistRepository {}
 
 void main() {
-
   MockPlaylistRepository repository;
   GetPlaylistVideos getPlaylistVideos;
 
   String playlistID = "PLOU2XLYxmsIIjHK9mEgLey-CaFcajdUBX";
-
 
   final testPlaylistVideoModel = PlaylistVideoResponse(
       kind: "youtube#playlistItemListResponse",
       etag: "JLBFmIcpInGbggWalPwqWLJZyVM",
       nextPageToken: "EAAaBlBUOkNBVQ",
       pageInfo: PageInfo(totalResults: 15, resultsPerPage: 5),
-      items:  const []);
+      items: const []);
 
   test(
     'should get playlist videos response from the repository',
-        () async {
+    () async {
       repository = MockPlaylistRepository();
       getPlaylistVideos = GetPlaylistVideos(repository);
       //stub the method
-      when(repository.getPlayListVideos(playlistID)).thenAnswer((_) async => Right(testPlaylistVideoModel));
+      when(repository.getPlayListVideos(playlistID))
+          .thenAnswer((_) async => Right(testPlaylistVideoModel));
       // act
       final result = await getPlaylistVideos(playlistID);
       // assert

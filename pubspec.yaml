@@ -50,6 +50,9 @@ dependencies:
   hooks_riverpod: ^1.0.4
   #  Internet connection checker is used to check data connection on device
   internet_connection_checker: ^0.0.1+4
+  # This package is responsible for playing youtube videos
+  youtube_player_flutter: ^8.1.0
+
 
 
 dev_dependencies:
