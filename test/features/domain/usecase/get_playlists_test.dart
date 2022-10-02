@@ -6,11 +6,11 @@ import 'package:youtube_data_api/features/data/model/playlist_response.dart';
 import 'package:youtube_data_api/features/domain/repository/playlist_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 
-class MockLatestVideoRepository extends Mock implements PlaylistRepository {}
+class MockPlaylistRepository extends Mock implements PlaylistRepository {}
 
 void main() {
 
-  MockLatestVideoRepository repository;
+  MockPlaylistRepository repository;
   GetPlaylist getPlaylist;
 
   final testPlaylistModel = PlaylistResponse(
@@ -23,7 +23,7 @@ void main() {
   test(
     'should get playlist response from the repository',
         () async {
-      repository = MockLatestVideoRepository();
+      repository = MockPlaylistRepository();
       getPlaylist = GetPlaylist(repository);
       //stub the method
       when(repository.getPlaylist()).thenAnswer((_) async => Right(testPlaylistModel));
