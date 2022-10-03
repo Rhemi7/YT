@@ -5,18 +5,19 @@ import 'package:youtube_data_api/features/data/datasources/get_channel_remote_da
 import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/datasources/get_videos_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/repository/get_channel_repo_impl.dart';
-import 'package:youtube_data_api/features/data/repository/get_latest_videos_repo_impl.dart';
+import 'package:youtube_data_api/features/data/repository/get_videos_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/playlist_repo_impl.dart';
 import 'package:youtube_data_api/features/domain/repository/get_channel_repository.dart';
-import 'package:youtube_data_api/features/domain/repository/get_latest_videos_repository.dart';
+import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
 import 'package:youtube_data_api/features/domain/repository/playlist_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
-import 'package:youtube_data_api/features/domain/usecase/get_latest_videos.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 
 import 'core/network_info.dart';
+import 'features/domain/usecase/get_next_videos.dart';
 
 
 
@@ -42,13 +43,15 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<GetChannel>(() => GetChannel(sl()));
 
-  //Latest Videos
+  //Videos
 
-  sl.registerLazySingleton<GetVideosRemoteDataSource>(() => GetLatestVideosRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<GetVideosRemoteDataSource>(() => GetVideosRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<GetLatestVideosRepository>(() => GetLatestVideosRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
+  sl.registerLazySingleton<GetVideosRepository>(() => GetVideosRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
 
-  sl.registerLazySingleton<GetLatestVideos>(() => GetLatestVideos(sl()));
+  sl.registerLazySingleton<GetVideos>(() => GetVideos(sl()));
+
+  sl.registerLazySingleton<GetNextVideos>(() => GetNextVideos(sl()));
 
   sl.registerLazySingleton<HomeViewModel>(() => HomeViewModel(sl()));
 

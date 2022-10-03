@@ -3,15 +3,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/usecases/usecases.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
-import 'package:youtube_data_api/features/domain/repository/get_latest_videos_repository.dart';
-import 'package:youtube_data_api/features/domain/usecase/get_latest_videos.dart';
+import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 
-class MockLatestVideoRepository extends Mock implements GetLatestVideosRepository {}
+class MockLatestVideoRepository extends Mock implements GetVideosRepository {}
 
 void main() {
 
   MockLatestVideoRepository repository;
-  GetLatestVideos getLatestVideos;
+  GetVideos getLatestVideos;
 
   final testVideosModel = VideosResponse(
       kind: "youtube#searchListResponse",
@@ -25,14 +25,14 @@ void main() {
     'should get video response from the repository',
         () async {
       repository = MockLatestVideoRepository();
-      getLatestVideos = GetLatestVideos(repository);
+      getLatestVideos = GetVideos(repository);
       //stub the method
-      when(repository.getLatestVideos()).thenAnswer((_) async => Right(testVideosModel));
+      when(repository.getVideos()).thenAnswer((_) async => Right(testVideosModel));
       // act
       final result = await getLatestVideos( NoParams());
       // assert
       expect(result, Right(testVideosModel));
-      verify(repository.getLatestVideos());
+      verify(repository.getVideos());
       verifyNoMoreInteractions(repository);
     },
   );

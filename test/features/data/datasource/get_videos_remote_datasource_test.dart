@@ -13,12 +13,12 @@ class MockClient extends Mock implements http.Client {}
 void main() {
 
   late MockClient client;
-  late GetLatestVideosRemoteDatasourceImpl dataSource;
+  late GetVideosRemoteDatasourceImpl dataSource;
 
   var url = Uri.parse('$baseUrl/search?channelId=$channelID&part=snippet&order=date&maxResults=10&key=$apIkey');
   setUp(() {
     client = MockClient();
-    dataSource = GetLatestVideosRemoteDatasourceImpl (client);
+    dataSource = GetVideosRemoteDatasourceImpl (client);
   });
 
   group('get channel', () {

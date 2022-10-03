@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/network_info.dart';
 import 'package:youtube_data_api/features/data/datasources/get_videos_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
-import 'package:youtube_data_api/features/data/repository/get_latest_videos_repo_impl.dart';
+import 'package:youtube_data_api/features/data/repository/get_videos_repo_impl.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
@@ -16,11 +16,11 @@ class MockGetVideosRemoteDataSource extends Mock
 void main() {
   late MockGetVideosRemoteDataSource mockRemoteDataSource;
   late MockNetworkInfo mockNetworkInfo;
-  late GetLatestVideosRepoImpl repository;
+  late GetVideosRepoImpl repository;
 
   mockRemoteDataSource = MockGetVideosRemoteDataSource();
   mockNetworkInfo = MockNetworkInfo();
-  repository = GetLatestVideosRepoImpl(
+  repository = GetVideosRepoImpl(
       networkInfo: mockNetworkInfo, remoteDatasource: mockRemoteDataSource);
 
   void runTestsOnline(Function body) {
@@ -48,7 +48,7 @@ void main() {
         // arrange
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
         // act
-        await repository.getLatestVideos();
+        await repository.getVideos();
         // assert
         verify(mockNetworkInfo.isConnected);
       },
@@ -62,7 +62,7 @@ void main() {
           when(mockRemoteDataSource.getVideos())
               .thenAnswer((_) async => testVideosModel);
           // act
-          final result = await repository.getLatestVideos();
+          final result = await repository.getVideos();
           // assert
           verify(mockRemoteDataSource.getVideos());
 

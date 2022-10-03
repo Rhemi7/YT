@@ -6,11 +6,12 @@ import '../../../core/error/failure.dart';
 
 abstract class GetVideosRemoteDataSource {
   Future<VideosResponse> getVideos();
+  Future<VideosResponse> getNextVideos({String? order, String? pageToken});
 }
 
-class GetLatestVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
+class GetVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
   late final http.Client client;
-  GetLatestVideosRemoteDatasourceImpl(this.client);
+  GetVideosRemoteDatasourceImpl(this.client);
 
   @override
   Future<VideosResponse> getVideos() async {
@@ -25,15 +26,29 @@ class GetLatestVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
       throw ServerException();
     }
   }
-}
-
-class GetSearchVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
 
   @override
-  Future<VideosResponse> getVideos() {
-    // TODO: implement getVideos
-    throw UnimplementedError();
+  Future<VideosResponse> getNextVideos({String? order, String? pageToken}) async {
+    String part = 'snippet';
+    var response = await client.get(
+        Uri.parse('$baseUrl/search?channelId=$channelID&part=$part&order=$order&maxResults=10&key=$apIkey&pageToken=$pageToken'),
+        headers: headers);
+    if (response.statusCode.toString().startsWith("2")) {
+      var videosResponse = videosResponseFromJson(response.body);
+      return videosResponse;
+    } else {
+      throw ServerException();
+    }
   }
-
-
 }
+
+// class GetSearchVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
+//
+//   @override
+//   Future<VideosResponse> getVideos() {
+//     // TODO: implement getVideos
+//     throw UnimplementedError();
+//   }
+//
+//
+// }

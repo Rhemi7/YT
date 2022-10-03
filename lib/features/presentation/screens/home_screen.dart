@@ -451,12 +451,27 @@ class VideosTabView extends ConsumerStatefulWidget {
 }
 
 class _VideosTabViewState extends ConsumerState<VideosTabView> {
+  ScrollController videosTabController = ScrollController();
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.watch(getVideosNotifierProvider.notifier).getRecentVideos();
+      ref.watch(getVideosNotifierProvider.notifier).getChannelVideos();
+    });
+    videosTabController.addListener(() {
+      if (videosTabController.position.pixels ==
+          videosTabController.position.maxScrollExtent) {
+        ref.watch(getVideosNotifierProvider.notifier).getNextChannelVideos(order: "date");
+        setState(() {});
+      }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    videosTabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -471,7 +486,17 @@ class _VideosTabViewState extends ConsumerState<VideosTabView> {
       } else if (state is GetVideosLoaded) {
         return ListView.builder(
           itemCount: state.items!.length,
+          controller: videosTabController,
           itemBuilder: (BuildContext context, int i) {
+            if (i == state.items!.length - 1) {
+              return const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Center(child: CircularProgressIndicator())),
+              );
+            }
             return VideoTileWidget(
               video: state.items![i],
             );

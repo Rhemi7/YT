@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
-import 'package:youtube_data_api/features/domain/usecase/get_latest_videos.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_state.dart';
@@ -10,6 +10,7 @@ import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_v
 import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_videos_state.dart';
 
 import '../../../service_locator.dart';
+import '../../domain/usecase/get_next_videos.dart';
 import '../../domain/usecase/get_playlist_videos.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_notifier.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_state.dart';
@@ -20,9 +21,11 @@ final getChannelNotifierProvider = StateNotifierProvider<GetChannelNotifier, Get
 
 //Videos Injection
 
-final getLatestVideosProvider = Provider<GetLatestVideos>((ref) => GetLatestVideos(sl()));
+final getVideosProvider = Provider<GetVideos>((ref) => GetVideos(sl()));
 
-final getVideosNotifierProvider = StateNotifierProvider<GetVideosNotifier, GetVideosState>((ref) => GetVideosNotifier(ref.watch(getLatestVideosProvider)));
+final getNextVideosProvider = Provider<GetNextVideos>((ref) => GetNextVideos(sl()));
+
+final getVideosNotifierProvider = StateNotifierProvider<GetVideosNotifier, GetVideosState>((ref) => GetVideosNotifier(getVideos:ref.watch(getVideosProvider), getNextVideos: ref.watch(getNextVideosProvider)));
 
 
 //Playlist
