@@ -29,7 +29,7 @@ class VideoTileWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: Resolution.screenWidth(context, percent: 0.5),
+            width: Resolution.screenWidth(context, percent: 0.48),
             height: Resolution.screenHeight(context, percent: 0.13),
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -44,7 +44,7 @@ class VideoTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    video!.snippet!.title.toString(), style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 17), fontWeight: FontWeight.w400),),
+                    video!.snippet!.title.toString(), style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 16), fontWeight: FontWeight.w400),),
                 Text(
                   video!.snippet!.channelTitle.toString(),
                   style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),

@@ -7,6 +7,7 @@ import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_v
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
+import 'package:youtube_data_api/helper/number_formatter.dart';
 import '../../../constants/const.dart';
 import '../../../constants/styles.dart';
 import '../../../service_locator.dart';
@@ -156,7 +157,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                 ),
                                 const YMargin(15),
                                 Text(
-                                  "${channelState.item!.statistics!.subscriberCount} subscribers",
+                                  "${NumberFormatter.formatter(channelState.item!.statistics!.subscriberCount.toString())} subscribers",
                                   style: TextStyle(
                                     fontSize: Resolution.textSize(context, 16),
                                   ),
