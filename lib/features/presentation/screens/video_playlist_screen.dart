@@ -9,9 +9,8 @@ import '../provider/provider.dart';
 import '../widgets/playlist_video_tile_widget.dart';
 
 class VideoPlaylistScreen extends ConsumerStatefulWidget {
-  final String? id;
   final Item? item;
-  const VideoPlaylistScreen({Key? key, this.id, this.item}) : super(key: key);
+  const VideoPlaylistScreen({Key? key, this.item}) : super(key: key);
 
   @override
   ConsumerState<VideoPlaylistScreen> createState() =>
@@ -24,7 +23,7 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
   @override
   void initState() {
     _controller = YoutubePlayerController(
-      initialVideoId: widget.id.toString(),
+      initialVideoId: widget.item!.snippet!.resourceId!.videoId.toString(),
       flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -36,6 +35,12 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
           .getVideosInPlaylist(widget.item!.snippet!.playlistId.toString());
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,7 +56,7 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
               print('Player is ready.');
             },
           ),
-          YMargin(10),
+          const YMargin(10),
           Consumer(
               builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final state = ref.watch(getPlaylistVideosNotifierProvider);
@@ -67,7 +72,17 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
                   itemBuilder: (BuildContext context, int index) {
                     return PlaylistVideoTileWidget(
                       video: state.items![index],
-                      id: widget.id,
+                      id: widget.item!.snippet!.resourceId!.videoId,
+                      onTap: () {
+                        widget.item!.snippet!.resourceId!.videoId =
+                            state.items![index].snippet!.resourceId!.videoId;
+
+                        _controller.load(state
+                            .items![index].snippet!.resourceId!.videoId
+                            .toString());
+
+                        setState(() {});
+                      },
                     );
                   },
                 ),

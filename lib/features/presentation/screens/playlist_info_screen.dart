@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_playlist_videos/get_playlist_videos_state.dart';
+import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
@@ -49,16 +50,18 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.playlistItem.snippet!.title!.toString(),
-                  style: AppTextStyle.headingText
-                      .copyWith(fontWeight: FontWeight.w600, fontSize: Resolution.textSize(context, 22)),
+                  style: AppTextStyle.headingText.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: Resolution.textSize(context, 22)),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.playlistItem.snippet!.channelTitle.toString(),
-                  style: AppTextStyle.headingText
-                      .copyWith(fontWeight: FontWeight.w500, fontSize: Resolution.textSize(context, 17)),
+                  style: AppTextStyle.headingText.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: Resolution.textSize(context, 17)),
                 ),
               ),
               const YMargin(10),
@@ -66,7 +69,8 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.playlistItem.snippet!.description.toString(),
-                  style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 16)),
+                  style: AppTextStyle.descText
+                      .copyWith(fontSize: Resolution.textSize(context, 16)),
                 ),
               ),
               const YMargin(25),
@@ -85,6 +89,14 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   return PlaylistVideoTileWidget(
                     video: state.items![index],
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => VideoPlaylistScreen(
+                                    item: state.items![index],
+                                  )));
+                    },
                   );
                 },
               ),

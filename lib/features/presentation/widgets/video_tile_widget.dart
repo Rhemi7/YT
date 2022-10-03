@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
+import 'package:youtube_data_api/helper/date_difference.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
@@ -51,7 +52,8 @@ class VideoTileWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      video!.snippet!.publishTime!.toIso8601String(),
+                      DateDifference.getDifference(DateTime.now(), video!.snippet!.publishTime!),
+                      // video!.snippet!.publishTime!.toIso8601String(),
                       style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
                     ),
                     const XMargin(2),

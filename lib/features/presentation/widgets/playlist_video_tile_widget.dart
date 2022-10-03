@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
+import 'package:youtube_data_api/helper/date_difference.dart';
 
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
@@ -10,27 +11,23 @@ import '../../data/model/playlist_videos_response.dart';
 class PlaylistVideoTileWidget extends StatelessWidget {
   final Item? video;
   final String? id;
+  final void Function()? onTap;
 
   const PlaylistVideoTileWidget({
     Key? key,
     this.video,
     this.id,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => VideoPlaylistScreen(
-                      id: video!.snippet!.resourceId!.videoId,
-                  item: video,
-                    )));
-      },
+      onTap: onTap,
       child: Container(
-        color: id == video!.snippet!.resourceId!.videoId ?  Colors.brown.shade600 : Colors.brown.shade600.withOpacity(0),
+        color: id == video!.snippet!.resourceId!.videoId
+            ? Colors.brown.shade600
+            : Colors.brown.shade600.withOpacity(0),
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,18 +47,22 @@ class PlaylistVideoTileWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(video!.snippet!.title.toString(), style: AppTextStyle.headingText.copyWith(
-                      fontSize: Resolution.textSize(context, 16),
-                      fontWeight: FontWeight.w400)),
+                  Text(video!.snippet!.title.toString(),
+                      style: AppTextStyle.headingText.copyWith(
+                          fontSize: Resolution.textSize(context, 16),
+                          fontWeight: FontWeight.w400)),
                   Text(
                     video!.snippet!.channelTitle.toString(),
-                    style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
+                    style: AppTextStyle.descText
+                        .copyWith(fontSize: Resolution.textSize(context, 13)),
                   ),
                   Row(
                     children: [
                       Text(
-                        video!.snippet!.publishedAt!.toIso8601String(),
-                        style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
+                        DateDifference.getDifference(
+                            DateTime.now(), video!.snippet!.publishedAt!),
+                        style: AppTextStyle.descText.copyWith(
+                            fontSize: Resolution.textSize(context, 13)),
                       ),
                       const XMargin(2),
                       CircleAvatar(

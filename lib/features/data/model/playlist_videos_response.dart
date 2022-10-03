@@ -136,7 +136,7 @@ class ResourceId {
   });
 
   final String? kind;
-  final String? videoId;
+  String? videoId;
 
   factory ResourceId.fromJson(Map<String, dynamic> json) => ResourceId(
         kind: json["kind"],
