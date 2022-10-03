@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_data_api/features/presentation/screens/play_video_screen.dart';
 
 import '../../../utils/margin.dart';
 import '../../data/model/videos_response.dart';
@@ -13,7 +14,13 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    PlayVideoScreen(videoId: res.id!.videoId.toString())));
+      },
       child: Row(
         children: [
           const Padding(

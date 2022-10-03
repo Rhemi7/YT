@@ -8,7 +8,6 @@ import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart
 class MockSearchRepository extends Mock implements SearchRepository {}
 
 void main() {
-
   MockSearchRepository repository;
   GetSearchResults getSearchResults;
 
@@ -18,15 +17,16 @@ void main() {
       regionCode: "US",
       nextPageToken: "CAUQAA",
       pageInfo: PageInfo(totalResults: 5774, resultsPerPage: 5),
-      items:  const []);
+      items: const []);
 
   test(
     'should get search video response from the repository',
-        () async {
+    () async {
       repository = MockSearchRepository();
       getSearchResults = GetSearchResults(repository);
       //stub the method
-      when(repository.getSearch('flutter')).thenAnswer((_) async => Right(testSearchVideosModel));
+      when(repository.getSearch('flutter'))
+          .thenAnswer((_) async => Right(testSearchVideosModel));
       // act
       final result = await getSearchResults('flutter');
       // assert

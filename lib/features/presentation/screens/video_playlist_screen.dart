@@ -52,7 +52,6 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
           YoutubePlayer(
             controller: _controller,
             showVideoProgressIndicator: true,
-            // progressIndicatorColor: Colors.red,
             progressColors: const ProgressBarColors(
               playedColor: Colors.red,
               bufferedColor: Colors.orangeAccent
