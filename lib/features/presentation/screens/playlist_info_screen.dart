@@ -49,7 +49,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.playlistItem.snippet!.title!.toString(),
-                  style: AppTextStyle.headingText.copyWith(
+                  style: AppStyle.headingText.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: Resolution.textSize(context, 22)),
                 ),
@@ -58,7 +58,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.playlistItem.snippet!.channelTitle.toString(),
-                  style: AppTextStyle.headingText.copyWith(
+                  style: AppStyle.headingText.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: Resolution.textSize(context, 17)),
                 ),
@@ -68,7 +68,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   widget.playlistItem.snippet!.description.toString(),
-                  style: AppTextStyle.descText
+                  style: AppStyle.descText
                       .copyWith(fontSize: Resolution.textSize(context, 16)),
                 ),
               ),
@@ -77,7 +77,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   "${widget.playlistItem.contentDetails!.itemCount} Videos",
-                  style: AppTextStyle.descText
+                  style: AppStyle.descText
                       .copyWith(fontWeight: FontWeight.w700),
                 ),
               ),

@@ -44,17 +44,17 @@ class VideoTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    video!.snippet!.title.toString(), style: AppTextStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 16), fontWeight: FontWeight.w400),),
+                    video!.snippet!.title.toString(), style: AppStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 16), fontWeight: FontWeight.w400),),
                 Text(
                   video!.snippet!.channelTitle.toString(),
-                  style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
+                  style: AppStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
                 ),
                 Row(
                   children: [
                     Text(
                       DateDifference.getDifference(DateTime.now(), video!.snippet!.publishTime!),
                       // video!.snippet!.publishTime!.toIso8601String(),
-                      style: AppTextStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
+                      style: AppStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
                     ),
                     const XMargin(2),
                     CircleAvatar(
@@ -65,7 +65,7 @@ class VideoTileWidget extends StatelessWidget {
                     Text(
                       '',
                       // video!.snippet!.channelTitle.toString(),
-                      style: AppTextStyle.descText.copyWith(fontSize: 11),
+                      style: AppStyle.descText.copyWith(fontSize: 11),
                     ),
                   ],
                 )

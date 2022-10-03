@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
@@ -15,6 +16,8 @@ import '../../domain/usecase/get_next_videos.dart';
 import '../../domain/usecase/get_playlist_videos.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_notifier.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_state.dart';
+import '../notifier/get_search/get_search_notifier.dart';
+import '../notifier/get_search/get_search_state.dart';
 
 final getChannelProvider = Provider<GetChannel>((ref) => GetChannel(sl()));
 
@@ -56,3 +59,11 @@ final getPlaylistVideosNotifierProvider =
     StateNotifierProvider<GetPlaylistVideosNotifier, GetPlaylistVideosState>(
         (ref) =>
             GetPlaylistVideosNotifier(ref.watch(getPlaylistVideosProvider)));
+
+final getSearchProvider =
+Provider<GetSearchResults>((ref) => GetSearchResults(sl()));
+
+final getSearchNotifierProvider =
+StateNotifierProvider<GetSearchNotifier, GetSearchState>((ref) =>
+    GetSearchNotifier(
+         getSearchResults: ref.watch(getSearchProvider)));

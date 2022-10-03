@@ -7,16 +7,20 @@ import 'package:youtube_data_api/features/data/datasources/get_videos_remote_dat
 import 'package:youtube_data_api/features/data/repository/get_channel_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/get_videos_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/playlist_repo_impl.dart';
+import 'package:youtube_data_api/features/data/repository/search_repository_implementation.dart';
 import 'package:youtube_data_api/features/domain/repository/get_channel_repository.dart';
 import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
 import 'package:youtube_data_api/features/domain/repository/playlist_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 
 import 'core/network_info.dart';
+import 'features/data/datasources/get_search_remote_datasource.dart';
+import 'features/domain/repository/search_repository.dart';
 import 'features/domain/usecase/get_next_videos.dart';
 
 
@@ -66,5 +70,12 @@ Future<void> setUpLocator() async {
   //Playlist Videos
 
   sl.registerLazySingleton<GetPlaylistVideos>(() => GetPlaylistVideos(sl()));
+
+  // Search
+  sl.registerLazySingleton<SearchRemoteDatasource>(() => SearchRemoteDatasourceImpl(sl()));
+
+  sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl( sl(),  sl()));
+
+  sl.registerLazySingleton<GetSearchResults>(() => GetSearchResults(sl()));
 
 }

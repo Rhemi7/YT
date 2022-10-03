@@ -49,12 +49,12 @@ class PlaylistVideoTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(video!.snippet!.title.toString().truncateTo(50),
-                      style: AppTextStyle.headingText.copyWith(
+                      style: AppStyle.headingText.copyWith(
                           fontSize: Resolution.textSize(context, 16),
                           fontWeight: FontWeight.w400)),
                   Text(
                     video!.snippet!.channelTitle.toString(),
-                    style: AppTextStyle.descText
+                    style: AppStyle.descText
                         .copyWith(fontSize: Resolution.textSize(context, 13)),
                   ),
                   Row(
@@ -62,7 +62,7 @@ class PlaylistVideoTileWidget extends StatelessWidget {
                       Text(
                         DateDifference.getDifference(
                             DateTime.now(), video!.snippet!.publishedAt!),
-                        style: AppTextStyle.descText.copyWith(
+                        style: AppStyle.descText.copyWith(
                             fontSize: Resolution.textSize(context, 13)),
                       ),
                       const XMargin(2),
@@ -74,7 +74,7 @@ class PlaylistVideoTileWidget extends StatelessWidget {
                       Text(
                         '',
                         // video!.snippet!.channelTitle.toString(),
-                        style: AppTextStyle.descText.copyWith(fontSize: 11),
+                        style: AppStyle.descText.copyWith(fontSize: 11),
                       ),
                     ],
                   )

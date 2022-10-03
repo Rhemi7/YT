@@ -63,18 +63,18 @@ class PlaylistTileWidget extends StatelessWidget {
                 children: [
                   Text(
                     playlist.snippet!.title!.toString(),
-                    style: AppTextStyle.headingText.copyWith(
+                    style: AppStyle.headingText.copyWith(
                         fontSize: Resolution.textSize(context, 16),
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
                     playlist.snippet!.channelTitle!.toString(),
-                    style: AppTextStyle.descText
+                    style: AppStyle.descText
                         .copyWith(fontSize: Resolution.textSize(context, 13)),
                   ),
                   Text(
                     "${playlist.contentDetails!.itemCount} videos",
-                    style: AppTextStyle.descText
+                    style: AppStyle.descText
                         .copyWith(fontSize: Resolution.textSize(context, 13)),
                   )
                 ],

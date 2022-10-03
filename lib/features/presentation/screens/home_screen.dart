@@ -7,6 +7,7 @@ import 'package:youtube_data_api/features/presentation/notifier/get_playlist/get
 import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_videos_state.dart';
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
+import 'package:youtube_data_api/features/presentation/widgets/search_bottom_sheet.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
 import 'package:youtube_data_api/helper/number_formatter.dart';
 import '../../../constants/const.dart';
@@ -51,6 +52,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             channelName.toUpperCase(),
           ),
           centerTitle: false,
+          actions: [
+            IconButton(onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  shape: AppStyle.modalBottomSheetCurve,
+                  isScrollControlled: true,
+                  builder: (context) {
+                    return SearchBottomSheet(
+                      // earnings: _earnings,
+                    );
+                  });
+            }, icon: const Icon(Icons.search))
+          ],
         ),
         body: Column(
           children: [
@@ -152,7 +166,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                 const YMargin(15),
                                 Text(
                                   channelState.item!.snippet!.title.toString(),
-                                  style: AppTextStyle.headingText.copyWith(
+                                  style: AppStyle.headingText.copyWith(
                                       fontSize:
                                           Resolution.textSize(context, 22)),
                                 ),
