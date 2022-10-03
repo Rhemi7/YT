@@ -52,6 +52,8 @@ dependencies:
   internet_connection_checker: ^0.0.1+4
   # This package is responsible for playing youtube videos
   youtube_player_flutter: ^8.1.0
+  # Uses country code to return the flag for countries
+  flag: ^5.0.1
 
 
 

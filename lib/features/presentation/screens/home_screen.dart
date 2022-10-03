@@ -1,3 +1,4 @@
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
@@ -175,11 +176,39 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                                         color: Colors.grey.shade400),
                                   ),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.location_on),
+                                      const XMargin(15),
+                                      Flag.fromString(
+                                          channelState.item!.snippet!.country.toString(), height: 15, width: 30,),
+                                      const XMargin(15),
+                                      Text(channelState.item!.snippet!.country.toString())
+                                    ],
+                                  ),
+                                ),
+                                const YMargin(15),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.show_chart),
+                                      const XMargin(15),
+                                      Text("${NumberFormatter.formatter(channelState.item!.statistics!.viewCount.toString())} Views")
+                                    ],
+                                  ),
+                                ),
+
+
                               ],
                             );
                           }
                           return const SizedBox.shrink();
                         }),
+
+
                         // if (provider.listItem.isNotEmpty)
                         //   for (int i = 0; i < 3; i++)
                         //     // for(var item in state.items!) {
@@ -216,8 +245,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       ],
                     ),
                   ),
-                  VideosTabView(),
-                  PlaylistTabView(),
+                  const VideosTabView(),
+                  const PlaylistTabView(),
                   Column(
                     children: [
                       Container(
