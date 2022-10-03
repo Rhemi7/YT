@@ -6,12 +6,12 @@ import 'package:youtube_data_api/features/data/model/videos_response.dart';
 import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 
-class MockLatestVideoRepository extends Mock implements GetVideosRepository {}
+class MockGetVideosRepository extends Mock implements GetVideosRepository {}
 
 void main() {
 
-  MockLatestVideoRepository repository;
-  GetVideos getLatestVideos;
+  MockGetVideosRepository repository;
+  GetVideos getVideos;
 
   final testVideosModel = VideosResponse(
       kind: "youtube#searchListResponse",
@@ -24,12 +24,12 @@ void main() {
   test(
     'should get video response from the repository',
         () async {
-      repository = MockLatestVideoRepository();
-      getLatestVideos = GetVideos(repository);
+      repository = MockGetVideosRepository();
+      getVideos = GetVideos(repository);
       //stub the method
       when(repository.getVideos()).thenAnswer((_) async => Right(testVideosModel));
       // act
-      final result = await getLatestVideos( NoParams());
+      final result = await getVideos( NoParams());
       // assert
       expect(result, Right(testVideosModel));
       verify(repository.getVideos());
