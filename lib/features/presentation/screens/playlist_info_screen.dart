@@ -8,7 +8,6 @@ import '../../../utils/resolution.dart';
 import '../../data/model/playlist_response.dart';
 import '../provider/provider.dart';
 import '../widgets/playlist_video_tile_widget.dart';
-import '../widgets/video_tile_widget.dart';
 
 class PlaylistInfoScreen extends ConsumerStatefulWidget {
   static const routeName = "playlist_info_screen";

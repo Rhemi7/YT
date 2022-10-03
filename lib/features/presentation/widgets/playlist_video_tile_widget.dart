@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
 import 'package:youtube_data_api/helper/date_difference.dart';
+import 'package:youtube_data_api/helper/string_extension.dart';
 
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
@@ -47,7 +48,7 @@ class PlaylistVideoTileWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(video!.snippet!.title.toString(),
+                  Text(video!.snippet!.title.toString().truncateTo(50),
                       style: AppTextStyle.headingText.copyWith(
                           fontSize: Resolution.textSize(context, 16),
                           fontWeight: FontWeight.w400)),
