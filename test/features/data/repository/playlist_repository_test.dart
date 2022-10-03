@@ -40,6 +40,7 @@ void main() {
         kind: "youtube#playlistListResponse",
         etag: "uzCxNou-1Q58M0GBb3IQGvzET1E",
         nextPageToken: "CBkQAA",
+        prevPageToken: "CDHSTE",
         pageInfo: PageInfo(totalResults: 164, resultsPerPage: 25),
         items:  const []);
 

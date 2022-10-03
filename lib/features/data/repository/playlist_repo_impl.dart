@@ -43,4 +43,18 @@ class PlaylistRepoImpl implements PlaylistRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, PlaylistResponse>> getNextPlaylist(String pageToken) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteNextPlaylist = await remoteDatasource.getNextPlaylist(pageToken);
+        return Right(remoteNextPlaylist);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
+  }
+
 }

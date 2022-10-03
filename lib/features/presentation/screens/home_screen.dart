@@ -519,10 +519,19 @@ class PlaylistTabView extends ConsumerStatefulWidget {
 }
 
 class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
+  ScrollController playlistTabController = ScrollController();
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
+    });
+    playlistTabController.addListener(() {
+      if (playlistTabController.position.pixels ==
+          playlistTabController.position.maxScrollExtent) {
+        ref.watch(getPlaylistNotifierProvider.notifier).getNextPlaylist();
+        setState(() {});
+      }
     });
     super.initState();
   }
@@ -539,7 +548,17 @@ class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
       } else if (state is GetPlaylistLoaded) {
         return ListView.builder(
           itemCount: state.items!.length,
+          controller: playlistTabController,
           itemBuilder: (BuildContext context, int i) {
+            if (i == state.items!.length - 1) {
+              return const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Center(child: CircularProgressIndicator())),
+              );
+            }
             return PlaylistTileWidget(playlist: state.items![i]);
           },
         );

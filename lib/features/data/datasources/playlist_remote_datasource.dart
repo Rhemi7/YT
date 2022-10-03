@@ -7,6 +7,8 @@ import '../model/playlist_response.dart';
 abstract class PlaylistRemoteDataSource {
   Future<PlaylistResponse> getPlaylist();
 
+  Future<PlaylistResponse> getNextPlaylist(String pageToken);
+
   Future<PlaylistVideoResponse> getPlayListVideos(String playlistId);
 }
 
@@ -19,6 +21,22 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
     String part = "snippet,contentDetails";
     var response = await client.get(
         Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10'),
+        headers: headers);
+
+    if (response.statusCode.toString().startsWith("2")) {
+      var playlistResponse = playlistResponseFromJson(response.body);
+      return playlistResponse;
+    } else {
+      throw ServerException();
+    }
+  }
+
+
+  @override
+  Future<PlaylistResponse> getNextPlaylist(String pageToken) async {
+    String part = "snippet,contentDetails";
+    var response = await client.get(
+        Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10&pageToken=$pageToken'),
         headers: headers);
 
     if (response.statusCode.toString().startsWith("2")) {
@@ -44,4 +62,5 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
       throw ServerException();
     }
   }
+
 }

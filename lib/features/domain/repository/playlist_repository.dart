@@ -6,5 +6,6 @@ import '../../data/model/playlist_response.dart';
 
 abstract class PlaylistRepository {
   Future<Either<Failure, PlaylistResponse>> getPlaylist();
+  Future<Either<Failure, PlaylistResponse>> getNextPlaylist(String pageToken);
   Future<Either<Failure, PlaylistVideoResponse>> getPlayListVideos(String playlistID);
 }

@@ -7,6 +7,7 @@ class PlaylistEntity extends Equatable {
     this.kind,
     this.etag,
     this.nextPageToken,
+    this.prevPageToken,
     this.pageInfo,
     this.items,
   });
@@ -14,6 +15,7 @@ class PlaylistEntity extends Equatable {
   final String? kind;
   final String? etag;
   final String? nextPageToken;
+  final String? prevPageToken;
   final PageInfo? pageInfo;
   final List<Item>? items;
 
