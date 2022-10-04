@@ -11,7 +11,8 @@ class SearchRepositoryImpl implements SearchRepository {
   SearchLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
-  SearchRepositoryImpl(this.remoteDatasource, this.networkInfo, this.localDataSource);
+  SearchRepositoryImpl(
+      this.remoteDatasource, this.networkInfo, this.localDataSource);
 
   @override
   Future<Either<Failure, VideosResponse>> getSearch(String query) async {
@@ -28,7 +29,8 @@ class SearchRepositoryImpl implements SearchRepository {
   }
 
   @override
-  Future<Either<Failure, List<VideoItem>>> cacheLastSearch(List<VideoItem> searches) async  {
+  Future<Either<Failure, List<VideoItem>>> cacheLastSearch(
+      List<VideoItem> searches) async {
     try {
       await localDataSource.cacheLastSearch(searches);
       return Right(searches);
@@ -47,4 +49,3 @@ class SearchRepositoryImpl implements SearchRepository {
     }
   }
 }
-

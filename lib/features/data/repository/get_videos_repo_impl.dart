@@ -28,10 +28,12 @@ class GetVideosRepoImpl implements GetVideosRepository {
   }
 
   @override
-  Future<Either<Failure, VideosResponse>> getNextVideos({String? order, String? pageToken}) async {
+  Future<Either<Failure, VideosResponse>> getNextVideos(
+      {String? order, String? pageToken}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteNextVideos = await remoteDatasource.getNextVideos(order: order, pageToken: pageToken);
+        final remoteNextVideos = await remoteDatasource.getNextVideos(
+            order: order, pageToken: pageToken);
         return Right(remoteNextVideos);
       } on ServerException {
         return Left(ServerFailure());

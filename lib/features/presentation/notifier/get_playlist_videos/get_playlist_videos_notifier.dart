@@ -23,23 +23,19 @@ class GetPlaylistVideosNotifier extends StateNotifier<GetPlaylistVideosState> {
       state = GetPlaylistVideosError(message: mapFailureToMessage(failure));
     }, (r) {
       pageToken = r.nextPageToken ?? "";
-      print(pageToken);
       _playlistVideos = r.items!;
       state = GetPlaylistVideosLoaded(r.items!);
     });
   }
 
-
   getNextVideosInPlaylist({required String playlistId}) async {
-    print(playlistId);
-    print(pageToken);
-    var result = await getNextPlaylistVideos(NextPlaylistVideos(pageToken: pageToken, playlistID: playlistId));
+    var result = await getNextPlaylistVideos(
+        NextPlaylistVideos(pageToken: pageToken, playlistID: playlistId));
     result.fold((l) {
       state = GetPlaylistVideosError(message: mapFailureToMessage(l));
     }, (r) {
       _playlistVideos.addAll(r.items!);
       pageToken = r.nextPageToken ?? r.prevPageToken!;
-      print(_playlistVideos.length);
       state = GetPlaylistVideosLoaded(_playlistVideos);
     });
   }

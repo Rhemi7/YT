@@ -4,7 +4,7 @@ abstract class GetSearchState {
   const GetSearchState();
 }
 
-class GetSearchInitial extends GetSearchState{
+class GetSearchInitial extends GetSearchState {
   const GetSearchInitial();
 }
 

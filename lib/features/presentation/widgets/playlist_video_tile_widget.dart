@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
 import 'package:youtube_data_api/helper/date_difference.dart';
 import 'package:youtube_data_api/helper/string_extension.dart';
-
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
@@ -65,32 +62,11 @@ class PlaylistVideoTileWidget extends StatelessWidget {
                         style: AppStyle.descText.copyWith(
                             fontSize: Resolution.textSize(context, 13)),
                       ),
-                      const XMargin(2),
-                      CircleAvatar(
-                        backgroundColor: Colors.grey.shade400,
-                        radius: 1,
-                      ),
-                      const XMargin(2),
-                      Text(
-                        '',
-                        // video!.snippet!.channelTitle.toString(),
-                        style: AppStyle.descText.copyWith(fontSize: 11),
-                      ),
                     ],
                   )
                 ],
               ),
             ),
-            InkWell(
-                onTap: () {},
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Icon(
-                    Icons.share_rounded,
-                    size: 12,
-                  ),
-                )),
-            const XMargin(10),
           ],
         ),
       ),

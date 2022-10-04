@@ -7,7 +7,7 @@ import '../datasources/get_channel_remote_datasource.dart';
 
 class ChannelRepoImpl implements ChannelRepository {
   final NetworkInfo networkInfo;
-  GetChannelRemoteDataSource  remoteDatasource;
+  GetChannelRemoteDataSource remoteDatasource;
   ChannelRepoImpl({required this.networkInfo, required this.remoteDatasource});
 
   @override
@@ -23,5 +23,4 @@ class ChannelRepoImpl implements ChannelRepository {
       return Left(ServerFailure());
     }
   }
-
 }

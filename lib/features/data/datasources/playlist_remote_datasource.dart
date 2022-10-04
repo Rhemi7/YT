@@ -72,16 +72,11 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
   Future<PlaylistVideoResponse> getNextPlayListVideos(
       {required String playlistID, required String pageToken}) async {
     String part = "snippet";
-    print(playlistID);
-    print(pageToken);
     var response = await client.get(
         Uri.parse(
             '$baseUrl/playlistItems?pageToken=$pageToken&playlistId=$playlistID&key=$apIkey&part=$part'),
         headers: headers);
-    print(response.statusCode);
-
     if (response.statusCode.toString().startsWith("2")) {
-      print(response.statusCode);
       var playlistVideoResponse = playlistVideoResponseFromJson(response.body);
       return playlistVideoResponse;
     } else {

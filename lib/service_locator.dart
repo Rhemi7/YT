@@ -22,27 +22,21 @@ import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
-import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 
 import 'core/network_info.dart';
 import 'features/data/datasources/get_search_remote_datasource.dart';
 import 'features/domain/repository/search_repository.dart';
 import 'features/domain/usecase/get_next_videos.dart';
 
-
-
-
 GetIt sl = GetIt.instance;
 
 Future<void> setUpLocator() async {
-
   //Http Client
   sl.registerLazySingleton(() => http.Client());
 
   final sharedPreferences = await SharedPreferences.getInstance();
 
   sl.registerLazySingleton(() => sharedPreferences);
-
 
   //Data connection
   sl.registerLazySingleton(() => InternetConnectionChecker());
@@ -51,17 +45,21 @@ Future<void> setUpLocator() async {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //Channel
-  sl.registerLazySingleton<GetChannelRemoteDataSource>(() => GetChannelRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<GetChannelRemoteDataSource>(
+      () => GetChannelRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<ChannelRepository>(() => ChannelRepoImpl(remoteDatasource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<ChannelRepository>(
+      () => ChannelRepoImpl(remoteDatasource: sl(), networkInfo: sl()));
 
   sl.registerLazySingleton<GetChannel>(() => GetChannel(sl()));
 
   //Videos
 
-  sl.registerLazySingleton<GetVideosRemoteDataSource>(() => GetVideosRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<GetVideosRemoteDataSource>(
+      () => GetVideosRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<GetVideosRepository>(() => GetVideosRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
+  sl.registerLazySingleton<GetVideosRepository>(
+      () => GetVideosRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
 
   sl.registerLazySingleton<GetVideos>(() => GetVideos(sl()));
 
@@ -69,27 +67,32 @@ Future<void> setUpLocator() async {
 
   //Playlist
 
-  sl.registerLazySingleton<PlaylistRemoteDataSource>(() => PlaylistRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<PlaylistRemoteDataSource>(
+      () => PlaylistRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<PlaylistRepository>(() => PlaylistRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
+  sl.registerLazySingleton<PlaylistRepository>(
+      () => PlaylistRepoImpl(networkInfo: sl(), remoteDatasource: sl()));
 
   sl.registerLazySingleton<GetPlaylist>(() => GetPlaylist(sl()));
 
   sl.registerLazySingleton<GetNextPlaylist>(() => GetNextPlaylist(sl()));
 
-
   //Playlist Videos
 
   sl.registerLazySingleton<GetPlaylistVideos>(() => GetPlaylistVideos(sl()));
 
-  sl.registerLazySingleton<GetNextPlaylistVideos>(() => GetNextPlaylistVideos(sl()));
+  sl.registerLazySingleton<GetNextPlaylistVideos>(
+      () => GetNextPlaylistVideos(sl()));
 
   // Search
-  sl.registerLazySingleton<SearchRemoteDatasource>(() => SearchRemoteDatasourceImpl(sl()));
+  sl.registerLazySingleton<SearchRemoteDatasource>(
+      () => SearchRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<SearchLocalDataSource>(() => SearchLocalDataSourceImpl(sl()));
+  sl.registerLazySingleton<SearchLocalDataSource>(
+      () => SearchLocalDataSourceImpl(sl()));
 
-  sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(sl(), sl(),  sl()));
+  sl.registerLazySingleton<SearchRepository>(
+      () => SearchRepositoryImpl(sl(), sl(), sl()));
 
   sl.registerLazySingleton<GetSearchResults>(() => GetSearchResults(sl()));
 
@@ -97,5 +100,4 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<GetLocalSearch>(() => GetLocalSearch(sl()));
   sl.registerLazySingleton<AddToSearch>(() => AddToSearch(sl()));
-
 }

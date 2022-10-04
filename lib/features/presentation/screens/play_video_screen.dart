@@ -39,12 +39,8 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
           controller: _controller,
           showVideoProgressIndicator: true,
           progressColors: const ProgressBarColors(
-              playedColor: Colors.red,
-              bufferedColor: Colors.orangeAccent
-          ),
-          onReady: () {
-            print('Player is ready.');
-          },
+              playedColor: Colors.red, bufferedColor: Colors.orangeAccent),
+          onReady: () {},
         ),
       ),
     );

@@ -80,16 +80,6 @@ class PlaylistTileWidget extends StatelessWidget {
                 ],
               ),
             ),
-            // InkWell(
-            //     onTap: () {},
-            //     child: const Padding(
-            //       padding:
-            //           EdgeInsets.symmetric(horizontal: 5.0),
-            //       child: Icon(
-            //         Icons.share_rounded,
-            //         size: 12,
-            //       ),
-            //     ))
           ],
         ),
       ),

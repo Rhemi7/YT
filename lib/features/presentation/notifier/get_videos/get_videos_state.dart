@@ -1,12 +1,10 @@
-
-
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
 
 abstract class GetVideosState {
   const GetVideosState();
 }
 
-class GetVideosInitial extends GetVideosState{
+class GetVideosInitial extends GetVideosState {
   const GetVideosInitial();
 }
 

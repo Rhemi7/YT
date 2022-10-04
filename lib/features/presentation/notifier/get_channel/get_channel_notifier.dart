@@ -6,22 +6,16 @@ import '../../../domain/usecase/get_channel.dart';
 
 class GetChannelNotifier extends StateNotifier<GetChannelState> {
   GetChannel getChannelUsecase;
-  GetChannelNotifier(this.getChannelUsecase): super(const GetChannelInitial());
+  GetChannelNotifier(this.getChannelUsecase) : super(const GetChannelInitial());
 
   getFavChannel() async {
-      state = const GetChannelLoading();
+    state = const GetChannelLoading();
 
-      var result = await getChannelUsecase(NoParams());
-      result.fold((failure) {
-        state = GetChannelError(message: mapFailureToMessage(failure));
-      }, (r) {
-        print("channelUrl ${r.items![0].snippet?.description}");
-        state = GetChannelLoaded(item: r.items![0]);
-      });
-
-
+    var result = await getChannelUsecase(NoParams());
+    result.fold((failure) {
+      state = GetChannelError(message: mapFailureToMessage(failure));
+    }, (r) {
+      state = GetChannelLoaded(item: r.items![0]);
+    });
   }
-
-
-
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:youtube_data_api/features/presentation/screens/home_screen.dart';
-import 'package:youtube_data_api/features/presentation/screens/playlist_info_screen.dart';
+import 'package:youtube_data_api/splash_screen.dart';
 import 'service_locator.dart' as di;
 
 void main() async {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         elevation: 0.0,
         // backgroundColor:
       )),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

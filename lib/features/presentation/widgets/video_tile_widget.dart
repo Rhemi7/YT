@@ -15,10 +15,10 @@ class VideoTileWidget extends StatelessWidget {
 
   const VideoTileWidget({
     Key? key,
-     this.title,
+    this.title,
     this.creator,
-     this.date,
-     this.views,
+    this.date,
+    this.views,
     this.video,
     this.onTap,
   }) : super(key: key);
@@ -37,8 +37,8 @@ class VideoTileWidget extends StatelessWidget {
               height: Resolution.screenHeight(context, percent: 0.13),
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(video!.snippet!.thumbnails!.medium!.url.toString()
-                      ),
+                      image: NetworkImage(
+                          video!.snippet!.thumbnails!.medium!.url.toString()),
                       fit: BoxFit.fitWidth)),
             ),
             const XMargin(10),
@@ -48,43 +48,30 @@ class VideoTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      video!.snippet!.title.toString(), style: AppStyle.headingText.copyWith(fontSize: Resolution.textSize(context, 16), fontWeight: FontWeight.w400),),
+                    video!.snippet!.title.toString(),
+                    style: AppStyle.headingText.copyWith(
+                        fontSize: Resolution.textSize(context, 16),
+                        fontWeight: FontWeight.w400),
+                  ),
                   Text(
                     video!.snippet!.channelTitle.toString(),
-                    style: AppStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
+                    style: AppStyle.descText
+                        .copyWith(fontSize: Resolution.textSize(context, 13)),
                   ),
                   Row(
                     children: [
                       Text(
-                        DateDifference.getDifference(DateTime.now(), video!.snippet!.publishTime!),
+                        DateDifference.getDifference(
+                            DateTime.now(), video!.snippet!.publishTime!),
                         // video!.snippet!.publishTime!.toIso8601String(),
-                        style: AppStyle.descText.copyWith(fontSize: Resolution.textSize(context, 13)),
-                      ),
-                      const XMargin(2),
-                      CircleAvatar(
-                        backgroundColor: Colors.grey.shade400,
-                        radius: 1,
-                      ),
-                      const XMargin(2),
-                      Text(
-                        '',
-                        // video!.snippet!.channelTitle.toString(),
-                        style: AppStyle.descText.copyWith(fontSize: 11),
+                        style: AppStyle.descText.copyWith(
+                            fontSize: Resolution.textSize(context, 13)),
                       ),
                     ],
                   )
                 ],
               ),
             ),
-            InkWell(
-                onTap: () {},
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Icon(
-                    Icons.share_rounded,
-                    size: 12,
-                  ),
-                ))
           ],
         ),
       ),

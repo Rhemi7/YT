@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_search/get_search_state.dart';
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/utils/margin.dart';
 import 'package:youtube_data_api/utils/resolution.dart';
-
 import '../../data/model/videos_response.dart';
 import '../screens/play_video_screen.dart';
 import 'app_textfield.dart';
@@ -40,7 +38,6 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
             .watch(getSearchNotifierProvider.notifier)
             .getSearch(searchController.text);
       });
-
     }
   }
 
@@ -69,12 +66,11 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
                     searchController: searchController,
                     onChanged: (value) {
                       if (value.isEmpty) {
-                        ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
-                        setState(() {
-
-                        });
+                        ref
+                            .watch(getSearchNotifierProvider.notifier)
+                            .getLocalSearch();
+                        setState(() {});
                       }
-
                     },
                   ),
                 ],

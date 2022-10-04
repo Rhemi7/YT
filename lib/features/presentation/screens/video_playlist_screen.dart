@@ -2,7 +2,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/utils/margin.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
-
 import '../../data/model/playlist_videos_response.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_state.dart';
 import '../provider/provider.dart';
@@ -53,12 +52,8 @@ class _VideoPlaylistScreenState extends ConsumerState<VideoPlaylistScreen> {
             controller: _controller,
             showVideoProgressIndicator: true,
             progressColors: const ProgressBarColors(
-              playedColor: Colors.red,
-              bufferedColor: Colors.orangeAccent
-            ),
-            onReady: () {
-              print('Player is ready.');
-            },
+                playedColor: Colors.red, bufferedColor: Colors.orangeAccent),
+            onReady: () {},
           ),
           const YMargin(10),
           Consumer(

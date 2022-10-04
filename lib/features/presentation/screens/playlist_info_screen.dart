@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_playlist_videos/get_playlist_videos_state.dart';
-import 'package:youtube_data_api/features/presentation/screens/home_screen.dart';
 import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
 import '../../data/model/playlist_response.dart';
 import '../provider/provider.dart';
+import '../widgets/app_error_widget.dart';
 import '../widgets/playlist_video_tile_widget.dart';
 
 class PlaylistInfoScreen extends ConsumerStatefulWidget {
@@ -32,8 +32,6 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
           .getVideosInPlaylist(widget.playlistItem.id.toString());
     });
     playlistVidController.addListener(() {
-      // print(playlistVidController.position.pixels);
-      // print(playlistVidController.position.maxScrollExtent);
       if (playlistVidController.position.pixels ==
           playlistVidController.position.maxScrollExtent) {
         ref

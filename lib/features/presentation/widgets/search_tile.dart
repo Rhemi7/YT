@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:youtube_data_api/features/presentation/provider/provider.dart';
-import 'package:youtube_data_api/features/presentation/screens/play_video_screen.dart';
-
 import '../../../utils/margin.dart';
 import '../../data/model/videos_response.dart';
 
@@ -18,12 +15,12 @@ class SearchTile extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context,  WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: onTap,
       child: Row(
         children: [
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: icon,
           ),
@@ -40,5 +37,3 @@ class SearchTile extends ConsumerWidget {
     );
   }
 }
-
-
