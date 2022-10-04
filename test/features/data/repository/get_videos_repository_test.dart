@@ -23,6 +23,9 @@ void main() {
   repository = GetVideosRepoImpl(
       networkInfo: mockNetworkInfo, remoteDatasource: mockRemoteDataSource);
 
+  String order = "date";
+  String pageToken = "CAUQAA";
+
   void runTestsOnline(Function body) {
     group('device is online', () {
       setUp(() {
@@ -33,7 +36,7 @@ void main() {
     });
   }
 
-  group("Get Latest Videos", () {
+  group("Get Videos", () {
     final testVideosModel = VideosResponse(
         kind: "youtube#searchListResponse",
         etag: "BcN2E3k2QTV5SGz-XeH8xDq7IKY",
@@ -65,6 +68,46 @@ void main() {
           final result = await repository.getVideos();
           // assert
           verify(mockRemoteDataSource.getVideos());
+
+          expect(result, equals(Right(testVideosModel)));
+        },
+      );
+    });
+  });
+
+  group("Get Next Videos", () {
+    final testVideosModel = VideosResponse(
+        kind: "youtube#searchListResponse",
+        etag: "BcN2E3k2QTV5SGz-XeH8xDq7IKY",
+        regionCode: "US",
+        prevPageToken:  "CDHSTE",
+        nextPageToken: "CAUQAA",
+        pageInfo: PageInfo(totalResults: 5774, resultsPerPage: 5),
+        items:  const []);
+
+    test(
+      'should check if the device is online',
+          () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        // act
+        await repository.getNextVideos(order: "date", pageToken: "CAUQAA");
+        // assert
+        verify(mockNetworkInfo.isConnected);
+      },
+    );
+
+    runTestsOnline(() {
+      test(
+        'should return remote data when the call is successful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getNextVideos(order: order, pageToken: pageToken))
+              .thenAnswer((_) async => testVideosModel);
+          // act
+          final result = await repository.getNextVideos(order: order, pageToken: pageToken);
+          // assert
+          verify(mockRemoteDataSource.getNextVideos(order: order, pageToken: pageToken));
 
           expect(result, equals(Right(testVideosModel)));
         },
