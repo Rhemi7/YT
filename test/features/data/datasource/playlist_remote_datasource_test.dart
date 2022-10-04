@@ -19,6 +19,7 @@ void main() {
 
   var playlistUrl = Uri.parse(
       '$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=snippet,contentDetails&maxResults=10');
+
   var playlistVidUrl = Uri.parse(
       '$baseUrl/playlistItems?playlistId=$playlistId&key=$apIkey&part=snippet');
 

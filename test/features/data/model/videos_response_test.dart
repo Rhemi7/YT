@@ -13,6 +13,7 @@ void main() {
       etag: "BcN2E3k2QTV5SGz-XeH8xDq7IKY",
       regionCode: "US",
       nextPageToken: "CAUQAA",
+      prevPageToken: "CDHSTE",
       pageInfo: PageInfo(totalResults: 5774, resultsPerPage: 5),
       items:  []);
 
@@ -43,6 +44,7 @@ void main() {
           "kind": "youtube#searchListResponse",
           "etag": "BcN2E3k2QTV5SGz-XeH8xDq7IKY",
           "nextPageToken": "CAUQAA",
+          "prevPageToken": "CDHSTE",
           "regionCode": "US",
           "pageInfo": {
             "totalResults": 5774,

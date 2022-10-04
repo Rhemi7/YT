@@ -17,6 +17,7 @@ class VideosResponse extends VideosEntity {
     this.kind,
     this.etag,
     this.nextPageToken,
+    this.prevPageToken,
     this.regionCode,
     this.pageInfo,
     this.items,
@@ -25,6 +26,7 @@ class VideosResponse extends VideosEntity {
   final String? kind;
   final String? etag;
   final String? nextPageToken;
+  final String? prevPageToken;
   final String? regionCode;
   final PageInfo? pageInfo;
   final List<VideoItem>? items;
@@ -33,7 +35,9 @@ class VideosResponse extends VideosEntity {
         kind: json["kind"],
         etag: json["etag"],
         nextPageToken: json["nextPageToken"],
-        regionCode: json["regionCode"],
+    prevPageToken: json["prevPageToken"],
+
+    regionCode: json["regionCode"],
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
         items: List<VideoItem>.from(json["items"].map((x) => VideoItem.fromJson(x))),
       );
@@ -42,6 +46,7 @@ class VideosResponse extends VideosEntity {
         "kind": kind,
         "etag": etag,
         "nextPageToken": nextPageToken,
+    "prevPageToken": prevPageToken,
         "regionCode": regionCode,
         "pageInfo": pageInfo!.toJson(),
         "items": List<dynamic>.from(items!.map((x) => x.toJson())),
