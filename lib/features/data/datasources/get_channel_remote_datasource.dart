@@ -24,6 +24,8 @@ class GetChannelRemoteDatasourceImpl implements GetChannelRemoteDataSource {
       var channelResponse = channelResponseFromJson(response.body);
       return channelResponse;
     } else {
+
+      print('quota error');
       throw ServerException();
     }
   }

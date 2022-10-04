@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_playlist_videos/get_playlist_videos_state.dart';
+import 'package:youtube_data_api/features/presentation/screens/home_screen.dart';
 import 'package:youtube_data_api/features/presentation/screens/video_playlist_screen.dart';
 import '../../../constants/styles.dart';
 import '../../../utils/margin.dart';
@@ -77,8 +78,8 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   "${widget.playlistItem.contentDetails!.itemCount} Videos",
-                  style: AppStyle.descText
-                      .copyWith(fontWeight: FontWeight.w700),
+                  style:
+                      AppStyle.descText.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               ListView.builder(
@@ -102,9 +103,13 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
             ],
           );
         } else if (state is GetPlaylistVideosError) {
-          Center(
-            child: Text(state.message),
-          );
+          return AppErrorWidget(
+              error: state.message,
+              onTap: () {
+                ref
+                    .watch(getPlaylistVideosNotifierProvider.notifier)
+                    .getVideosInPlaylist(widget.playlistItem.id.toString());
+              });
         }
         return const SizedBox.shrink();
       }),

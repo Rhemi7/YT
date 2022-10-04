@@ -101,190 +101,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   HomeTabView(),
                   VideosTabView(),
                   PlaylistTabView(),
-                  // Column(
-                  //   children: [
-                  //     Container(
-                  //       width: Resolution.screenWidth(context),
-                  //       height: Resolution.screenHeight(context, percent: 0.12),
-                  //       color: Colors.greenAccent,
-                  //     ),
-                  //     const Center(child: YMargin(10)),
-                  //     const CircleAvatar(
-                  //       radius: 30,
-                  //       backgroundColor: Colors.blue,
-                  //     ),
-                  //     const YMargin(15),
-                  //     const Text(
-                  //       channelName,
-                  //       style: TextStyle(
-                  //           fontWeight: FontWeight.w700, fontSize: 17),
-                  //     ),
-                  //     const YMargin(15),
-                  //     const Text(
-                  //       "2M subscribers",
-                  //       style: TextStyle(
-                  //         fontSize: 13,
-                  //       ),
-                  //     ),
-                  //     const YMargin(15),
-                  //     Padding(
-                  //       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  //       child: Text(
-                  //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
-                  //         style: TextStyle(
-                  //             fontSize: 13, color: Colors.grey.shade400),
-                  //       ),
-                  //     ),
-                  //     // const YMargin(15),
-                  //     // Container(
-                  //     //   height: 300,
-                  //     //   child: ListView.builder(
-                  //     //     itemCount: 3,
-                  //     //     itemBuilder: (BuildContext context, int index) {
-                  //     //       return Padding(
-                  //     //         padding: const EdgeInsets.only(left: 10.0, top: 15),
-                  //     //         child: Row(
-                  //     //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //     //           children: [
-                  //     //             Container(
-                  //     //               width: Resolution.screenWidth(context, percent: 0.45),
-                  //     //               height: Resolution.screenHeight(context, percent: 0.14),
-                  //     //               color: Colors.greenAccent,
-                  //     //             ),
-                  //     //             const XMargin(10),
-                  //     //             Expanded(
-                  //     //               child: Column(
-                  //     //                 crossAxisAlignment: CrossAxisAlignment.start,
-                  //     //                 children: [
-                  //     //                   const Text(
-                  //     //                       'First line First line First line First line'),
-                  //     //                   Text(
-                  //     //                     'Second Line',
-                  //     //                     style: AppTextStyle.descText.copyWith(fontSize: 11),
-                  //     //                   ),
-                  //     //                   Text(
-                  //     //                     'Third line',
-                  //     //                     style: AppTextStyle.descText.copyWith(fontSize: 11),
-                  //     //                   )
-                  //     //                 ],
-                  //     //               ),
-                  //     //             ),
-                  //     //             InkWell(
-                  //     //                 onTap: () {},
-                  //     //                 child: const Padding(
-                  //     //                   padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  //     //                   child: Icon(
-                  //     //                     Icons.share_rounded,
-                  //     //                     size: 12,
-                  //     //                   ),
-                  //     //                 ))
-                  //     //           ],
-                  //     //         ),
-                  //     //       );
-                  //     //     },
-                  //     //   ),
-                  //     // )
-                  //     for (int i = 0; i < 3; i++)
-                  //       const VideoTileWidget(
-                  //         title: "First line First line First line First line",
-                  //         creator: 'Second Line',
-                  //         date: "Third line 2",
-                  //         views: "Third line 3",
-                  //       )
-                  //   ],
-                  // ),
-                  // Column(
-                  //   children: [
-                  //     Container(
-                  //       width: Resolution.screenWidth(context),
-                  //       height: Resolution.screenHeight(context, percent: 0.12),
-                  //       color: Colors.greenAccent,
-                  //     ),
-                  //     const Center(child: YMargin(10)),
-                  //     const CircleAvatar(
-                  //       radius: 30,
-                  //       backgroundColor: Colors.blue,
-                  //     ),
-                  //     const YMargin(15),
-                  //     const Text(
-                  //       channelName,
-                  //       style: TextStyle(
-                  //           fontWeight: FontWeight.w700, fontSize: 17),
-                  //     ),
-                  //     const YMargin(15),
-                  //     const Text(
-                  //       "2M subscribers",
-                  //       style: TextStyle(
-                  //         fontSize: 13,
-                  //       ),
-                  //     ),
-                  //     const YMargin(15),
-                  //     Padding(
-                  //       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  //       child: Text(
-                  //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
-                  //         style: TextStyle(
-                  //             fontSize: 13, color: Colors.grey.shade400),
-                  //       ),
-                  //     ),
-                  //     // const YMargin(15),
-                  //     // Container(
-                  //     //   height: 300,
-                  //     //   child: ListView.builder(
-                  //     //     itemCount: 3,
-                  //     //     itemBuilder: (BuildContext context, int index) {
-                  //     //       return Padding(
-                  //     //         padding: const EdgeInsets.only(left: 10.0, top: 15),
-                  //     //         child: Row(
-                  //     //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //     //           children: [
-                  //     //             Container(
-                  //     //               width: Resolution.screenWidth(context, percent: 0.45),
-                  //     //               height: Resolution.screenHeight(context, percent: 0.14),
-                  //     //               color: Colors.greenAccent,
-                  //     //             ),
-                  //     //             const XMargin(10),
-                  //     //             Expanded(
-                  //     //               child: Column(
-                  //     //                 crossAxisAlignment: CrossAxisAlignment.start,
-                  //     //                 children: [
-                  //     //                   const Text(
-                  //     //                       'First line First line First line First line'),
-                  //     //                   Text(
-                  //     //                     'Second Line',
-                  //     //                     style: AppTextStyle.descText.copyWith(fontSize: 11),
-                  //     //                   ),
-                  //     //                   Text(
-                  //     //                     'Third line',
-                  //     //                     style: AppTextStyle.descText.copyWith(fontSize: 11),
-                  //     //                   )
-                  //     //                 ],
-                  //     //               ),
-                  //     //             ),
-                  //     //             InkWell(
-                  //     //                 onTap: () {},
-                  //     //                 child: const Padding(
-                  //     //                   padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  //     //                   child: Icon(
-                  //     //                     Icons.share_rounded,
-                  //     //                     size: 12,
-                  //     //                   ),
-                  //     //                 ))
-                  //     //           ],
-                  //     //         ),
-                  //     //       );
-                  //     //     },
-                  //     //   ),
-                  //     // )
-                  //     for (int i = 0; i < 3; i++)
-                  //       const VideoTileWidget(
-                  //         title: "First line First line First line First line",
-                  //         creator: 'Second Line',
-                  //         date: "Third line 2",
-                  //         views: "Third line 3",
-                  //       )
-                  //   ],
-                  // ),
                 ],
               ),
             )
@@ -327,45 +143,58 @@ class _HomeTabViewState extends ConsumerState<HomeTabView> {
               return MainHomeView(
                 item: channelState.item!,
               );
+            } else if (channelState is GetChannelError) {
+              return AppErrorWidget(
+                error: channelState.message,
+                onTap: () {
+                  ref
+                      .watch(getChannelNotifierProvider.notifier)
+                      .getFavChannel();
+                },
+              );
             }
             return const SizedBox.shrink();
           }),
-
-          // if (provider.listItem.isNotEmpty)
-          //   for (int i = 0; i < 3; i++)
-          //     // for(var item in state.items!) {
-          //
-          //     VideoTileWidget(video: provider.listItem[i])
-
-          // Consumer(builder: (BuildContext context, WidgetRef ref,
-          //     Widget? child) {
-          //   final state = ref.watch(getVideosNotifierProvider);
-          //   if (state is GetVideosLoading) {
-          //     return const CircularProgressIndicator();
-          //   } else if (state is GetVideosLoaded) {
-          //     for (int i = 0; i < 3; i++) {
-          //       // for(var item in state.items!) {
-          //
-          //       return VideoTileWidget(
-          //           video: provider.listItem[i]);
-          //     }
-          //     print('videos loaded');
-          //     // Container(
-          //     //   height: 200,
-          //     //   child: ListView.builder(
-          //     //     itemCount: 3,
-          //     //     itemBuilder: (BuildContext context, int i) {
-          //     //       return VideoTileWidget(
-          //     //         video:state.items![i] ,
-          //     //       );
-          //     //     },
-          //     //   ),
-          //     // );
-          //   }
-          //   return const SizedBox.shrink();
-          // })
         ],
       ),
+    );
+  }
+}
+
+class AppErrorWidget extends StatelessWidget {
+  const AppErrorWidget({Key? key, required this.error, required this.onTap})
+      : super(key: key);
+
+  final String error;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        YMargin(Resolution.screenHeight(context, percent: 0.3)),
+        Center(
+            child: Text(
+          error,
+          style: const TextStyle(fontSize: 16),
+          textAlign: TextAlign.center,
+        )),
+        const YMargin(20),
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            height: 50,
+            width: 100,
+            color: Colors.red,
+            child: const Center(
+                child: Text(
+              'Retry',
+              style: TextStyle(fontSize: 18),
+            )),
+          ),
+        )
+      ],
     );
   }
 }
@@ -383,13 +212,9 @@ class MainHomeView extends StatelessWidget {
           height: Resolution.screenHeight(context, percent: 0.12),
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(
-                          item
-                          .brandingSettings!
-                          .image!
-                          .bannerExternalUrl
-                          .toString()
-                      ),
+                  image: NetworkImage(item
+                      .brandingSettings!.image!.bannerExternalUrl
+                      .toString()),
                   fit: BoxFit.fitWidth)),
         ),
         const Center(child: YMargin(10)),
@@ -397,22 +222,17 @@ class MainHomeView extends StatelessWidget {
           radius: 30,
           backgroundColor: Colors.blue,
           backgroundImage: NetworkImage(
-              item.snippet!
-              .thumbnails!
-              .thumbnailsDefault!
-              .url
-              .toString()
-              ),
+              item.snippet!.thumbnails!.thumbnailsDefault!.url.toString()),
         ),
         const YMargin(15),
         Text(
-          item!.snippet!.title.toString(),
+          item.snippet!.title.toString(),
           style: AppStyle.headingText
               .copyWith(fontSize: Resolution.textSize(context, 22)),
         ),
         const YMargin(15),
         Text(
-          "${NumberFormatter.formatter(item!.statistics!.subscriberCount.toString())} subscribers",
+          "${NumberFormatter.formatter(item.statistics!.subscriberCount.toString())} subscribers",
           style: TextStyle(
             fontSize: Resolution.textSize(context, 16),
           ),
@@ -421,8 +241,7 @@ class MainHomeView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Text(
-            item.snippet!.description
-                .toString(),
+            item.snippet!.description.toString(),
             style: TextStyle(
                 fontSize: Resolution.textSize(context, 16),
                 color: Colors.grey.shade400),
@@ -435,16 +254,12 @@ class MainHomeView extends StatelessWidget {
               const Icon(Icons.location_on),
               const XMargin(15),
               Flag.fromString(
-                item.snippet!.country
-                    .toString(),
+                item.snippet!.country.toString(),
                 height: 15,
                 width: 30,
               ),
               const XMargin(15),
-              Text(
-                  item.snippet!.country
-                  .toString()
-                  )
+              Text(item.snippet!.country.toString())
             ],
           ),
         ),
@@ -456,8 +271,7 @@ class MainHomeView extends StatelessWidget {
               const Icon(Icons.show_chart),
               const XMargin(15),
               Text(
-                  "${NumberFormatter.formatter(item.statistics!.viewCount.toString())} Views"
-                  )
+                  "${NumberFormatter.formatter(item.statistics!.viewCount.toString())} Views")
             ],
           ),
         ),
@@ -536,7 +350,11 @@ class _VideosTabViewState extends ConsumerState<VideosTabView> {
             );
           },
         );
-        // }
+      } else if (state is GetVideosError) {
+        return AppErrorWidget(error: state.message, onTap: () {
+          ref.watch(getVideosNotifierProvider.notifier).getChannelVideos();
+
+        },);
       }
       return const SizedBox.shrink();
     });
@@ -597,6 +415,11 @@ class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
           },
         );
         // }
+      } else if (state is GetPlaylistError) {
+        return AppErrorWidget(error: state.message, onTap: () {
+          ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
+
+        },);
       }
       return const SizedBox.shrink();
     });

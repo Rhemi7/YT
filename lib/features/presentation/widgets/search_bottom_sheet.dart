@@ -10,7 +10,7 @@ import 'package:youtube_data_api/utils/resolution.dart';
 import '../../data/model/videos_response.dart';
 import '../screens/play_video_screen.dart';
 import 'app_textfield.dart';
-import '../screens/search_tile.dart';
+import 'search_tile.dart';
 
 class SearchBottomSheet extends ConsumerStatefulWidget {
   SearchBottomSheet({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../../../core/error/failure.dart';
 import '../../../domain/usecase/get_playlist_videos.dart';
 import 'get_playlist_videos_state.dart';
 
@@ -8,17 +9,13 @@ class GetPlaylistVideosNotifier extends StateNotifier<GetPlaylistVideosState> {
   GetPlaylistVideosNotifier(this.getPlaylistVideos) : super(const GetPlaylistVideosInitial());
 
   getVideosInPlaylist(String playlistId) async {
-    print("playlistID $playlistId");
-
-    try {
-      state = const GetPlaylistVideosLoading();
+     state = const GetPlaylistVideosLoading();
       var result = await getPlaylistVideos(playlistId);
-      result.fold((l) => null, (r) {
-        print("playlistVideos ${r.items![0].snippet?.description}");
+      result.fold((failure) {
+        state = GetPlaylistVideosError(message: mapFailureToMessage(failure));
+      }, (r) {
         state = GetPlaylistVideosLoaded(r.items!);
       });
-    } catch (e) {
-      state = GetPlaylistVideosError(message: "An error occured");
-    }
+
   }
 }

@@ -16,3 +16,14 @@ class CacheFailure extends Failure {}
 class ServerException implements Exception {}
 
 class CacheException implements Exception {}
+
+String mapFailureToMessage(Failure failure) {
+  switch (failure.runtimeType) {
+    case ServerFailure:
+      return 'Maximum daily quota has been exceeded.\nPlease try again tomorrow';
+    case CacheFailure:
+      return 'No internet connection';
+    default:
+      return 'Unexpected error';
+  }
+}
