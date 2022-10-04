@@ -51,7 +51,7 @@ void main() {
         // arrange
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
         // act
-        await repository.getVideos();
+        await repository.getVideos(order);
         // assert
         verify(mockNetworkInfo.isConnected);
       },
@@ -62,12 +62,12 @@ void main() {
         'should return remote data when the call is successful',
             () async {
           // arrange
-          when(mockRemoteDataSource.getVideos())
+          when(mockRemoteDataSource.getVideos(order))
               .thenAnswer((_) async => testVideosModel);
           // act
-          final result = await repository.getVideos();
+          final result = await repository.getVideos(order);
           // assert
-          verify(mockRemoteDataSource.getVideos());
+          verify(mockRemoteDataSource.getVideos(order));
 
           expect(result, equals(Right(testVideosModel)));
         },

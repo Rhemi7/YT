@@ -14,10 +14,10 @@ class GetVideosRepoImpl implements GetVideosRepository {
       {required this.networkInfo, required this.remoteDatasource});
 
   @override
-  Future<Either<Failure, VideosResponse>> getVideos() async {
+  Future<Either<Failure, VideosResponse>> getVideos(String order) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteVideos = await remoteDatasource.getVideos();
+        final remoteVideos = await remoteDatasource.getVideos(order);
         return Right(remoteVideos);
       } on ServerException {
         return Left(ServerFailure());

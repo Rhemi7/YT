@@ -2,7 +2,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import '../../../../core/error/failure.dart';
-import '../../../../core/usecases/usecases.dart';
 import '../../../domain/usecase/get_next_videos.dart';
 import 'get_videos_state.dart';
 
@@ -16,9 +15,9 @@ class GetVideosNotifier extends StateNotifier<GetVideosState> {
   GetVideosNotifier({required this.getVideos, required this.getNextVideos})
       : super(const GetVideosInitial());
 
-  getChannelVideos() async {
+  getChannelVideos(String order) async {
     state = const GetVideosLoading();
-    var result = await getVideos(NoParams());
+    var result = await getVideos(order);
     result.fold((failure) {
       state = GetVideosError(mapFailureToMessage(failure));
     }, (r) {

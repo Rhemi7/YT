@@ -1,19 +1,16 @@
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_notifier.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_channel/get_channel_state.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_playlist/get_playlist_state.dart';
 import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_videos_state.dart';
 import 'package:youtube_data_api/features/presentation/provider/provider.dart';
 import 'package:youtube_data_api/features/presentation/screens/play_video_screen.dart';
-import 'package:youtube_data_api/features/presentation/view_model/home_view_model.dart';
 import 'package:youtube_data_api/features/presentation/widgets/search_bottom_sheet.dart';
 import 'package:youtube_data_api/features/presentation/widgets/video_tile_widget.dart';
 import 'package:youtube_data_api/helper/number_formatter.dart';
 import '../../../constants/const.dart';
 import '../../../constants/styles.dart';
-import '../../../service_locator.dart';
 import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
 import '../../data/model/channel_response.dart';
@@ -295,7 +292,7 @@ class _VideosTabViewState extends ConsumerState<VideosTabView> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.watch(getVideosNotifierProvider.notifier).getChannelVideos();
+      ref.watch(getVideosNotifierProvider.notifier).getChannelVideos('date');
     });
     videosTabController.addListener(() {
       if (videosTabController.position.pixels ==
@@ -351,10 +348,14 @@ class _VideosTabViewState extends ConsumerState<VideosTabView> {
           },
         );
       } else if (state is GetVideosError) {
-        return AppErrorWidget(error: state.message, onTap: () {
-          ref.watch(getVideosNotifierProvider.notifier).getChannelVideos();
-
-        },);
+        return AppErrorWidget(
+          error: state.message,
+          onTap: () {
+            ref
+                .watch(getVideosNotifierProvider.notifier)
+                .getChannelVideos('date');
+          },
+        );
       }
       return const SizedBox.shrink();
     });
@@ -416,10 +417,12 @@ class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
         );
         // }
       } else if (state is GetPlaylistError) {
-        return AppErrorWidget(error: state.message, onTap: () {
-          ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
-
-        },);
+        return AppErrorWidget(
+          error: state.message,
+          onTap: () {
+            ref.watch(getPlaylistNotifierProvider.notifier).getAllPlaylist();
+          },
+        );
       }
       return const SizedBox.shrink();
     });

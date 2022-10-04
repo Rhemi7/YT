@@ -31,14 +31,14 @@ void main() {
           when(client.get(url, headers: headers)).thenAnswer(
                   (_) async => http.Response(dataReader('videos_response.json'), 200));
 
-          expect(await dataSource.getVideos(), isA<VideosResponse>());
+          expect(await dataSource.getVideos(order), isA<VideosResponse>());
         });
 
     test('throws an exception if the http call results in an error', () {
       when(client.get(url, headers: headers))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
-      expect(() => dataSource.getVideos(),
+      expect(() => dataSource.getVideos(order),
           throwsA(const TypeMatcher<ServerException>()));
     });
   });

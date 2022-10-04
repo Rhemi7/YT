@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:youtube_data_api/core/usecases/usecases.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
 import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
@@ -27,12 +26,12 @@ void main() {
       repository = MockGetVideosRepository();
       getVideos = GetVideos(repository);
       //stub the method
-      when(repository.getVideos()).thenAnswer((_) async => Right(testVideosModel));
+      when(repository.getVideos('date')).thenAnswer((_) async => Right(testVideosModel));
       // act
-      final result = await getVideos( NoParams());
+      final result = await getVideos('date');
       // assert
       expect(result, Right(testVideosModel));
-      verify(repository.getVideos());
+      verify(repository.getVideos('date'));
       verifyNoMoreInteractions(repository);
     },
   );

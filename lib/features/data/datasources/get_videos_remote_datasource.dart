@@ -5,7 +5,7 @@ import 'package:youtube_data_api/features/data/model/videos_response.dart';
 import '../../../core/error/failure.dart';
 
 abstract class GetVideosRemoteDataSource {
-  Future<VideosResponse> getVideos();
+  Future<VideosResponse> getVideos(String order);
   Future<VideosResponse> getNextVideos({String? order, String? pageToken});
 }
 
@@ -14,10 +14,10 @@ class GetVideosRemoteDatasourceImpl implements GetVideosRemoteDataSource {
   GetVideosRemoteDatasourceImpl(this.client);
 
   @override
-  Future<VideosResponse> getVideos() async {
+  Future<VideosResponse> getVideos(String order) async {
     String part = 'snippet';
     var response = await client.get(
-        Uri.parse('$baseUrl/search?channelId=$channelID&part=$part&order=date&maxResults=10&key=$apIkey'),
+        Uri.parse('$baseUrl/search?channelId=$channelID&part=$part&order=$order&maxResults=10&key=$apIkey'),
         headers: headers);
     if (response.statusCode.toString().startsWith("2")) {
       var videosResponse = videosResponseFromJson(response.body);
