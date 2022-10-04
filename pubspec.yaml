@@ -44,7 +44,7 @@ dependencies:
   mockito: ^5.0.9
   #  Dartz is used for functional programming
   dartz: ^0.10.0
-  #  Shared preferences for local staorage
+  #  Shared preferences for local storage
   shared_preferences: ^2.0.15
   #  Riverpod is used for state management
   hooks_riverpod: ^1.0.4
@@ -54,6 +54,7 @@ dependencies:
   youtube_player_flutter: ^8.1.0
   # Uses country code to return the flag for countries
   flag: ^5.0.1
+
 
 
 

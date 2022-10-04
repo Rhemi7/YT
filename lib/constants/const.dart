@@ -10,5 +10,7 @@ const String videos = "Videos";
 const String playlists = "Playlists";
 const String info = "More Info";
 
+const String cachedSearchString = "cachedSearchString";
+
 
 const Map<String, String> headers = {"Content-Type": "application/json"};

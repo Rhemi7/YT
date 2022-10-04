@@ -1,9 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_data_api/features/data/datasources/get_channel_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/datasources/playlist_remote_datasource.dart';
 import 'package:youtube_data_api/features/data/datasources/get_videos_remote_datasource.dart';
+import 'package:youtube_data_api/features/data/datasources/search_local_data_source.dart';
 import 'package:youtube_data_api/features/data/repository/get_channel_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/get_videos_repo_impl.dart';
 import 'package:youtube_data_api/features/data/repository/playlist_repo_impl.dart';
@@ -11,7 +13,9 @@ import 'package:youtube_data_api/features/data/repository/search_repository_impl
 import 'package:youtube_data_api/features/domain/repository/get_channel_repository.dart';
 import 'package:youtube_data_api/features/domain/repository/get_videos_repository.dart';
 import 'package:youtube_data_api/features/domain/repository/playlist_repository.dart';
+import 'package:youtube_data_api/features/domain/usecase/add_to_search.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_local_searches.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dart';
@@ -32,6 +36,10 @@ Future<void> setUpLocator() async {
 
   //Http Client
   sl.registerLazySingleton(() => http.Client());
+
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  sl.registerLazySingleton(() => sharedPreferences);
 
 
   //Data connection
@@ -74,8 +82,15 @@ Future<void> setUpLocator() async {
   // Search
   sl.registerLazySingleton<SearchRemoteDatasource>(() => SearchRemoteDatasourceImpl(sl()));
 
-  sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl( sl(),  sl()));
+  sl.registerLazySingleton<SearchLocalDataSource>(() => SearchLocalDataSourceImpl(sl()));
+
+  sl.registerLazySingleton<SearchRepository>(() => SearchRepositoryImpl(sl(), sl(),  sl()));
 
   sl.registerLazySingleton<GetSearchResults>(() => GetSearchResults(sl()));
+
+  // Local
+
+  sl.registerLazySingleton<GetLocalSearch>(() => GetLocalSearch(sl()));
+  sl.registerLazySingleton<AddToSearch>(() => AddToSearch(sl()));
 
 }

@@ -1,5 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:youtube_data_api/features/domain/usecase/add_to_search.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_local_searches.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlists.dart';
@@ -61,9 +63,16 @@ final getPlaylistVideosNotifierProvider =
             GetPlaylistVideosNotifier(ref.watch(getPlaylistVideosProvider)));
 
 final getSearchProvider =
-Provider<GetSearchResults>((ref) => GetSearchResults(sl()));
+    Provider<GetSearchResults>((ref) => GetSearchResults(sl()));
+
+final getLocalSearchProvider =
+    Provider<GetLocalSearch>((ref) => GetLocalSearch(sl()));
+
+final addToSearchProvider = Provider<AddToSearch>((ref) => AddToSearch(sl()));
 
 final getSearchNotifierProvider =
-StateNotifierProvider<GetSearchNotifier, GetSearchState>((ref) =>
-    GetSearchNotifier(
-         getSearchResults: ref.watch(getSearchProvider)));
+    StateNotifierProvider<GetSearchNotifier, GetSearchState>((ref) =>
+        GetSearchNotifier(
+            getSearchResults: ref.watch(getSearchProvider),
+            getLocalSearches: ref.watch(getLocalSearchProvider),
+            addToSearch: ref.watch(addToSearchProvider)));

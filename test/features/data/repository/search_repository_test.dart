@@ -3,25 +3,31 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:youtube_data_api/core/network_info.dart';
 import 'package:youtube_data_api/features/data/datasources/get_search_remote_datasource.dart';
+import 'package:youtube_data_api/features/data/datasources/search_local_data_source.dart';
 import 'package:youtube_data_api/features/data/model/videos_response.dart';
 import 'package:youtube_data_api/features/data/repository/search_repository_implementation.dart';
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
-class MockGetVideosRemoteDataSource extends Mock
+class MockSearchRemoteDataSource extends Mock
     implements SearchRemoteDatasource {}
+
+class MockSearchLocalDataSource extends Mock
+    implements SearchLocalDataSource {}
 
 void main() {
   String query = "flutter";
 
-  late MockGetVideosRemoteDataSource mockRemoteDataSource;
+  late MockSearchRemoteDataSource mockRemoteDataSource;
+  late MockSearchLocalDataSource mockLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
   late SearchRepositoryImpl repository;
 
-  mockRemoteDataSource = MockGetVideosRemoteDataSource();
+  mockRemoteDataSource = MockSearchRemoteDataSource();
   mockNetworkInfo = MockNetworkInfo();
+  mockLocalDataSource = MockSearchLocalDataSource();
   repository = SearchRepositoryImpl(
-       mockRemoteDataSource, mockNetworkInfo);
+       mockRemoteDataSource, mockNetworkInfo, mockLocalDataSource);
 
   void runTestsOnline(Function body) {
     group('device is online', () {

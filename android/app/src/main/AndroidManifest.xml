@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.youtube_data_api">
-   <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
         android:label="youtube_data_api"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

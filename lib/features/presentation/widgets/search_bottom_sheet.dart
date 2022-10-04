@@ -8,6 +8,7 @@ import 'package:youtube_data_api/utils/margin.dart';
 import 'package:youtube_data_api/utils/resolution.dart';
 
 import '../../data/model/videos_response.dart';
+import '../screens/play_video_screen.dart';
 import 'app_textfield.dart';
 import '../screens/search_tile.dart';
 
@@ -30,12 +31,13 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
   }
 
   onSearch() {
-    if(searchController.text.isNotEmpty) {
+    if (searchController.text.isEmpty) {
+      ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
+    } else {
       ref
           .watch(getSearchNotifierProvider.notifier)
           .getSearch(searchController.text);
     }
-
   }
 
   @override
@@ -59,7 +61,14 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
                     },
                     icon: const Icon(Icons.arrow_back_ios),
                   ),
-                  AppTextfield(searchController: searchController),
+                  AppTextfield(
+                    searchController: searchController,
+                    onChanged: (value) {
+                      // if (searchController.text.isEmpty) {
+                      //   ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
+                      // }
+                    },
+                  ),
                 ],
               ),
               const YMargin(15),
@@ -73,8 +82,24 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
                       itemBuilder: (BuildContext context, int i) {
                         Item res = state.items![i];
                         return SearchTile(
-                          res: res,
-                        );
+                            icon: searchController.text.isEmpty
+                                ? const Icon(Icons.history)
+                                : const Icon(Icons.search),
+                            res: res,
+                            onTap: () {
+                              ref
+                                  .watch(getSearchNotifierProvider.notifier)
+                                  .addToLocalSearch(res);
+
+                              searchController.clear();
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PlayVideoScreen(
+                                          videoId:
+                                              res.id!.videoId.toString())));
+                            });
                       },
                       separatorBuilder: (BuildContext context, int index) {
                         return const YMargin(20);
@@ -91,6 +116,3 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
     );
   }
 }
-
-
-
