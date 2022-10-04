@@ -12,11 +12,12 @@ PlaylistVideoResponse playlistVideoResponseFromJson(String str) =>
 String playlistVideoResponseToJson(PlaylistVideoResponse data) =>
     json.encode(data.toJson());
 
-class PlaylistVideoResponse extends PlaylistVideoEntity{
+class PlaylistVideoResponse extends PlaylistVideoEntity {
   PlaylistVideoResponse({
     this.kind,
     this.etag,
     this.nextPageToken,
+    this.prevPageToken,
     this.items,
     this.pageInfo,
   });
@@ -24,6 +25,7 @@ class PlaylistVideoResponse extends PlaylistVideoEntity{
   final String? kind;
   final String? etag;
   final String? nextPageToken;
+  final String? prevPageToken;
   final List<Item>? items;
   final PageInfo? pageInfo;
 
@@ -32,6 +34,7 @@ class PlaylistVideoResponse extends PlaylistVideoEntity{
         kind: json["kind"],
         etag: json["etag"],
         nextPageToken: json["nextPageToken"],
+        prevPageToken: json["prevPageToken"],
         items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
       );
@@ -40,6 +43,7 @@ class PlaylistVideoResponse extends PlaylistVideoEntity{
         "kind": kind,
         "etag": etag,
         "nextPageToken": nextPageToken,
+        "prevPageToken": prevPageToken,
         "items": List<dynamic>.from(items!.map((x) => x.toJson())),
         "pageInfo": pageInfo!.toJson(),
       };
@@ -165,18 +169,28 @@ class Thumbnails {
   final Default? maxres;
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
-        thumbnailsDefault: Default.fromJson(json["default"]),
-        medium: Default.fromJson(json["medium"]),
-        high: Default.fromJson(json["high"]),
-    standard: json["standard"] == null ? null : Default.fromJson(json["standard"]),
-        maxres: Default.fromJson(json["maxres"]),
+        thumbnailsDefault: json["default"] == null
+            ? null
+            : Default.fromJson(json["default"]),
+        medium: json["medium"] == null
+            ? null
+            :Default.fromJson(json["medium"]),
+        high: json["high"] == null
+            ? null
+            : Default.fromJson(json["high"]),
+        standard: json["standard"] == null
+            ? null
+            : Default.fromJson(json["standard"]),
+        maxres: json["maxres"] == null
+            ? null
+            : Default.fromJson(json["maxres"]),
       );
 
   Map<String, dynamic> toJson() => {
         "default": thumbnailsDefault!.toJson(),
         "medium": medium!.toJson(),
         "high": high!.toJson(),
-    "standard": standard == null ? null : standard!.toJson(),
+        "standard": standard == null ? null : standard!.toJson(),
         "maxres": maxres!.toJson(),
       };
 }

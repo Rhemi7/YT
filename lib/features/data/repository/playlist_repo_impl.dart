@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:youtube_data_api/features/data/model/playlist_videos_response.dart';
 
@@ -10,7 +9,7 @@ import '../model/playlist_response.dart';
 
 class PlaylistRepoImpl implements PlaylistRepository {
   final NetworkInfo networkInfo;
-  PlaylistRemoteDataSource  remoteDatasource;
+  PlaylistRemoteDataSource remoteDatasource;
   PlaylistRepoImpl({required this.networkInfo, required this.remoteDatasource});
 
   @override
@@ -28,26 +27,28 @@ class PlaylistRepoImpl implements PlaylistRepository {
   }
 
   @override
-  Future<Either<Failure, PlaylistVideoResponse>> getPlayListVideos(String playlistID) async {
+  Future<Either<Failure, PlaylistVideoResponse>> getPlayListVideos(
+      String playlistID) async {
     if (await networkInfo.isConnected) {
       try {
-        final remotePlaylistVideos = await remoteDatasource.getPlayListVideos(playlistID);
-        print('playlistvideos $remotePlaylistVideos');
+        final remotePlaylistVideos =
+            await remoteDatasource.getPlayListVideos(playlistID);
         return Right(remotePlaylistVideos);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      print("error");
       return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, PlaylistResponse>> getNextPlaylist(String pageToken) async {
+  Future<Either<Failure, PlaylistResponse>> getNextPlaylist(
+      String pageToken) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteNextPlaylist = await remoteDatasource.getNextPlaylist(pageToken);
+        final remoteNextPlaylist =
+            await remoteDatasource.getNextPlaylist(pageToken);
         return Right(remoteNextPlaylist);
       } on ServerException {
         return Left(ServerFailure());
@@ -57,4 +58,20 @@ class PlaylistRepoImpl implements PlaylistRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, PlaylistVideoResponse>> getNextPlayListVideos(
+      {required String playlistID, required String pageToken}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteNextPlaylistVideos =
+            await remoteDatasource.getNextPlayListVideos(
+                pageToken: pageToken, playlistID: playlistID);
+        return Right(remoteNextPlaylistVideos);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
+  }
 }

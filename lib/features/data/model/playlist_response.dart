@@ -37,7 +37,8 @@ class PlaylistResponse extends PlaylistEntity {
         nextPageToken: json["nextPageToken"],
         prevPageToken: json["prevPageToken"],
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
-        items: List<PlaylistItem>.from(json["items"].map((x) => PlaylistItem.fromJson(x))),
+        items: List<PlaylistItem>.from(
+            json["items"].map((x) => PlaylistItem.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

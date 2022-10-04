@@ -22,12 +22,26 @@ class PlaylistInfoScreen extends ConsumerStatefulWidget {
 }
 
 class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
+  ScrollController playlistVidController = ScrollController();
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .watch(getPlaylistVideosNotifierProvider.notifier)
           .getVideosInPlaylist(widget.playlistItem.id.toString());
+    });
+    playlistVidController.addListener(() {
+      // print(playlistVidController.position.pixels);
+      // print(playlistVidController.position.maxScrollExtent);
+      if (playlistVidController.position.pixels ==
+          playlistVidController.position.maxScrollExtent) {
+        ref
+            .watch(getPlaylistVideosNotifierProvider.notifier)
+            .getNextVideosInPlaylist(
+                playlistId: widget.playlistItem.id.toString());
+        setState(() {});
+      }
     });
     super.initState();
   }
@@ -45,6 +59,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
           );
         } else if (state is GetPlaylistVideosLoaded) {
           return ListView(
+            controller: playlistVidController,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -87,6 +102,15 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
+                  if (index == state.items!.length - 1) {
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: Center(child: CircularProgressIndicator())),
+                    );
+                  }
                   return PlaylistVideoTileWidget(
                     video: state.items![index],
                     onTap: () {

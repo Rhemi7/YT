@@ -35,18 +35,18 @@ class VideosResponse extends VideosEntity {
         kind: json["kind"],
         etag: json["etag"],
         nextPageToken: json["nextPageToken"],
-    prevPageToken: json["prevPageToken"],
-
-    regionCode: json["regionCode"],
+        prevPageToken: json["prevPageToken"],
+        regionCode: json["regionCode"],
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
-        items: List<VideoItem>.from(json["items"].map((x) => VideoItem.fromJson(x))),
+        items: List<VideoItem>.from(
+            json["items"].map((x) => VideoItem.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "kind": kind,
         "etag": etag,
         "nextPageToken": nextPageToken,
-    "prevPageToken": prevPageToken,
+        "prevPageToken": prevPageToken,
         "regionCode": regionCode,
         "pageInfo": pageInfo!.toJson(),
         "items": List<dynamic>.from(items!.map((x) => x.toJson())),
@@ -152,7 +152,16 @@ class Snippet extends Equatable {
       };
 
   @override
-  List<Object?> get props => [publishedAt, channelTitle, channelId, title, thumbnails, liveBroadcastContent, publishTime, description];
+  List<Object?> get props => [
+        publishedAt,
+        channelTitle,
+        channelId,
+        title,
+        thumbnails,
+        liveBroadcastContent,
+        publishTime,
+        description
+      ];
 }
 
 class Thumbnails extends Equatable {
@@ -167,9 +176,11 @@ class Thumbnails extends Equatable {
   final Default? high;
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
-        thumbnailsDefault: Default.fromJson(json["default"]),
-        medium: Default.fromJson(json["medium"]),
-        high: Default.fromJson(json["high"]),
+        thumbnailsDefault:
+            json["default"] == null ? null : Default.fromJson(json["default"]),
+        medium:
+            json["medium"] == null ? null : Default.fromJson(json["medium"]),
+        high: json["high"] == null ? null : Default.fromJson(json["high"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -183,7 +194,7 @@ class Thumbnails extends Equatable {
   List<Object?> get props => [medium, high, thumbnailsDefault];
 }
 
-class Default extends Equatable{
+class Default extends Equatable {
   Default({
     this.url,
     this.width,

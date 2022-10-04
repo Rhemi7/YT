@@ -7,9 +7,11 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:youtube_data_api/features/domain/entity/channel_entity.dart';
 
-ChannelResponse channelResponseFromJson(String str) => ChannelResponse.fromJson(json.decode(str));
+ChannelResponse channelResponseFromJson(String str) =>
+    ChannelResponse.fromJson(json.decode(str));
 
-String channelResponseToJson(ChannelResponse data) => json.encode(data.toJson());
+String channelResponseToJson(ChannelResponse data) =>
+    json.encode(data.toJson());
 
 class ChannelResponse extends ChannelEntity {
   ChannelResponse({
@@ -24,19 +26,21 @@ class ChannelResponse extends ChannelEntity {
   final PageInfo? pageInfo;
   final List<ChannelItem>? items;
 
-  factory ChannelResponse.fromJson(Map<String, dynamic> json) => ChannelResponse(
-    kind: json["kind"],
-    etag: json["etag"],
-    pageInfo: PageInfo.fromJson(json["pageInfo"]),
-    items: List<ChannelItem>.from(json["items"].map((x) => ChannelItem.fromJson(x))),
-  );
+  factory ChannelResponse.fromJson(Map<String, dynamic> json) =>
+      ChannelResponse(
+        kind: json["kind"],
+        etag: json["etag"],
+        pageInfo: PageInfo.fromJson(json["pageInfo"]),
+        items: List<ChannelItem>.from(
+            json["items"].map((x) => ChannelItem.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "kind": kind,
-    "etag": etag,
-    "pageInfo": pageInfo!.toJson(),
-    "items": List<dynamic>.from(items!.map((x) => x.toJson())),
-  };
+        "kind": kind,
+        "etag": etag,
+        "pageInfo": pageInfo!.toJson(),
+        "items": List<dynamic>.from(items!.map((x) => x.toJson())),
+      };
 }
 
 class ChannelItem {
@@ -51,7 +55,7 @@ class ChannelItem {
   });
 
   final String? kind;
-  final String ?etag;
+  final String? etag;
   final String? id;
   final Snippet? snippet;
   final ContentDetails? contentDetails;
@@ -59,24 +63,24 @@ class ChannelItem {
   final BrandingSettings? brandingSettings;
 
   factory ChannelItem.fromJson(Map<String, dynamic> json) => ChannelItem(
-    kind: json["kind"],
-    etag: json["etag"],
-    id: json["id"],
-    snippet: Snippet.fromJson(json["snippet"]),
-    contentDetails: ContentDetails.fromJson(json["contentDetails"]),
-    statistics: Statistics.fromJson(json["statistics"]),
-    brandingSettings: BrandingSettings.fromJson(json["brandingSettings"]),
-  );
+        kind: json["kind"],
+        etag: json["etag"],
+        id: json["id"],
+        snippet: Snippet.fromJson(json["snippet"]),
+        contentDetails: ContentDetails.fromJson(json["contentDetails"]),
+        statistics: Statistics.fromJson(json["statistics"]),
+        brandingSettings: BrandingSettings.fromJson(json["brandingSettings"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "kind": kind,
-    "etag": etag,
-    "id": id,
-    "snippet": snippet!.toJson(),
-    "contentDetails": contentDetails!.toJson(),
-    "statistics": statistics!.toJson(),
-    "brandingSettings": brandingSettings!.toJson(),
-  };
+        "kind": kind,
+        "etag": etag,
+        "id": id,
+        "snippet": snippet!.toJson(),
+        "contentDetails": contentDetails!.toJson(),
+        "statistics": statistics!.toJson(),
+        "brandingSettings": brandingSettings!.toJson(),
+      };
 }
 
 class BrandingSettings {
@@ -88,15 +92,16 @@ class BrandingSettings {
   final Channel? channel;
   final Image? image;
 
-  factory BrandingSettings.fromJson(Map<String, dynamic> json) => BrandingSettings(
-    channel: Channel.fromJson(json["channel"]),
-    image: Image.fromJson(json["image"]),
-  );
+  factory BrandingSettings.fromJson(Map<String, dynamic> json) =>
+      BrandingSettings(
+        channel: Channel.fromJson(json["channel"]),
+        image: Image.fromJson(json["image"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "channel": channel!.toJson(),
-    "image": image!.toJson(),
-  };
+        "channel": channel!.toJson(),
+        "image": image!.toJson(),
+      };
 }
 
 class Channel {
@@ -110,29 +115,29 @@ class Channel {
   });
 
   final String? title;
-  final String ?description;
-  final String ?keywords;
-  final String ?trackingAnalyticsAccountId;
-  final String ?unsubscribedTrailer;
-  final String ?country;
+  final String? description;
+  final String? keywords;
+  final String? trackingAnalyticsAccountId;
+  final String? unsubscribedTrailer;
+  final String? country;
 
   factory Channel.fromJson(Map<String, dynamic> json) => Channel(
-    title: json["title"],
-    description: json["description"],
-    keywords: json["keywords"],
-    trackingAnalyticsAccountId: json["trackingAnalyticsAccountId"],
-    unsubscribedTrailer: json["unsubscribedTrailer"],
-    country: json["country"],
-  );
+        title: json["title"],
+        description: json["description"],
+        keywords: json["keywords"],
+        trackingAnalyticsAccountId: json["trackingAnalyticsAccountId"],
+        unsubscribedTrailer: json["unsubscribedTrailer"],
+        country: json["country"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "description": description,
-    "keywords": keywords,
-    "trackingAnalyticsAccountId": trackingAnalyticsAccountId,
-    "unsubscribedTrailer": unsubscribedTrailer,
-    "country": country,
-  };
+        "title": title,
+        "description": description,
+        "keywords": keywords,
+        "trackingAnalyticsAccountId": trackingAnalyticsAccountId,
+        "unsubscribedTrailer": unsubscribedTrailer,
+        "country": country,
+      };
 }
 
 class Image {
@@ -143,12 +148,12 @@ class Image {
   final String? bannerExternalUrl;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
-    bannerExternalUrl: json["bannerExternalUrl"],
-  );
+        bannerExternalUrl: json["bannerExternalUrl"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "bannerExternalUrl": bannerExternalUrl,
-  };
+        "bannerExternalUrl": bannerExternalUrl,
+      };
 }
 
 class ContentDetails {
@@ -159,12 +164,12 @@ class ContentDetails {
   final RelatedPlaylists? relatedPlaylists;
 
   factory ContentDetails.fromJson(Map<String, dynamic> json) => ContentDetails(
-    relatedPlaylists: RelatedPlaylists.fromJson(json["relatedPlaylists"]),
-  );
+        relatedPlaylists: RelatedPlaylists.fromJson(json["relatedPlaylists"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "relatedPlaylists": relatedPlaylists!.toJson(),
-  };
+        "relatedPlaylists": relatedPlaylists!.toJson(),
+      };
 }
 
 class RelatedPlaylists {
@@ -176,15 +181,16 @@ class RelatedPlaylists {
   final String? likes;
   final String? uploads;
 
-  factory RelatedPlaylists.fromJson(Map<String, dynamic> json) => RelatedPlaylists(
-    likes: json["likes"],
-    uploads: json["uploads"],
-  );
+  factory RelatedPlaylists.fromJson(Map<String, dynamic> json) =>
+      RelatedPlaylists(
+        likes: json["likes"],
+        uploads: json["uploads"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "likes": likes,
-    "uploads": uploads,
-  };
+        "likes": likes,
+        "uploads": uploads,
+      };
 }
 
 class Snippet {
@@ -207,24 +213,24 @@ class Snippet {
   final String? country;
 
   factory Snippet.fromJson(Map<String, dynamic> json) => Snippet(
-    title: json["title"],
-    description: json["description"],
-    customUrl: json["customUrl"],
-    publishedAt: DateTime.parse(json["publishedAt"]),
-    thumbnails: Thumbnails.fromJson(json["thumbnails"]),
-    localized: Localized.fromJson(json["localized"]),
-    country: json["country"],
-  );
+        title: json["title"],
+        description: json["description"],
+        customUrl: json["customUrl"],
+        publishedAt: DateTime.parse(json["publishedAt"]),
+        thumbnails: Thumbnails.fromJson(json["thumbnails"]),
+        localized: Localized.fromJson(json["localized"]),
+        country: json["country"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "description": description,
-    "customUrl": customUrl,
-    "publishedAt": publishedAt!.toIso8601String(),
-    "thumbnails": thumbnails!.toJson(),
-    "localized": localized!.toJson(),
-    "country": country,
-  };
+        "title": title,
+        "description": description,
+        "customUrl": customUrl,
+        "publishedAt": publishedAt!.toIso8601String(),
+        "thumbnails": thumbnails!.toJson(),
+        "localized": localized!.toJson(),
+        "country": country,
+      };
 }
 
 class Localized {
@@ -237,14 +243,14 @@ class Localized {
   final String? description;
 
   factory Localized.fromJson(Map<String, dynamic> json) => Localized(
-    title: json["title"],
-    description: json["description"],
-  );
+        title: json["title"],
+        description: json["description"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "title": title,
-    "description": description,
-  };
+        "title": title,
+        "description": description,
+      };
 }
 
 class Thumbnails {
@@ -259,16 +265,18 @@ class Thumbnails {
   final Default? high;
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
-    thumbnailsDefault: Default.fromJson(json["default"]),
-    medium: Default.fromJson(json["medium"]),
-    high: Default.fromJson(json["high"]),
-  );
+        thumbnailsDefault:
+            json["default"] == null ? null : Default.fromJson(json["default"]),
+        medium:
+            json["medium"] == null ? null : Default.fromJson(json["medium"]),
+        high: json["high"] == null ? null : Default.fromJson(json["high"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "default": thumbnailsDefault!.toJson(),
-    "medium": medium!.toJson(),
-    "high": high!.toJson(),
-  };
+        "default": thumbnailsDefault!.toJson(),
+        "medium": medium!.toJson(),
+        "high": high!.toJson(),
+      };
 }
 
 class Default {
@@ -283,16 +291,16 @@ class Default {
   final int? height;
 
   factory Default.fromJson(Map<String, dynamic> json) => Default(
-    url: json["url"],
-    width: json["width"],
-    height: json["height"],
-  );
+        url: json["url"],
+        width: json["width"],
+        height: json["height"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "url": url,
-    "width": width,
-    "height": height,
-  };
+        "url": url,
+        "width": width,
+        "height": height,
+      };
 }
 
 class Statistics {
@@ -309,21 +317,21 @@ class Statistics {
   final String? videoCount;
 
   factory Statistics.fromJson(Map<String, dynamic> json) => Statistics(
-    viewCount: json["viewCount"],
-    subscriberCount: json["subscriberCount"],
-    hiddenSubscriberCount: json["hiddenSubscriberCount"],
-    videoCount: json["videoCount"],
-  );
+        viewCount: json["viewCount"],
+        subscriberCount: json["subscriberCount"],
+        hiddenSubscriberCount: json["hiddenSubscriberCount"],
+        videoCount: json["videoCount"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "viewCount": viewCount,
-    "subscriberCount": subscriberCount,
-    "hiddenSubscriberCount": hiddenSubscriberCount,
-    "videoCount": videoCount,
-  };
+        "viewCount": viewCount,
+        "subscriberCount": subscriberCount,
+        "hiddenSubscriberCount": hiddenSubscriberCount,
+        "videoCount": videoCount,
+      };
 }
 
-class PageInfo extends Equatable{
+class PageInfo extends Equatable {
   PageInfo({
     this.totalResults,
     this.resultsPerPage,
@@ -333,14 +341,14 @@ class PageInfo extends Equatable{
   final int? resultsPerPage;
 
   factory PageInfo.fromJson(Map<String, dynamic> json) => PageInfo(
-    totalResults: json["totalResults"],
-    resultsPerPage: json["resultsPerPage"],
-  );
+        totalResults: json["totalResults"],
+        resultsPerPage: json["resultsPerPage"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "totalResults": totalResults,
-    "resultsPerPage": resultsPerPage,
-  };
+        "totalResults": totalResults,
+        "resultsPerPage": resultsPerPage,
+      };
 
   @override
   // TODO: implement props

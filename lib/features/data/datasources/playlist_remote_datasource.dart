@@ -4,12 +4,16 @@ import 'package:youtube_data_api/features/data/model/playlist_videos_response.da
 import '../../../constants/const.dart';
 import '../../../core/error/failure.dart';
 import '../model/playlist_response.dart';
+
 abstract class PlaylistRemoteDataSource {
   Future<PlaylistResponse> getPlaylist();
 
   Future<PlaylistResponse> getNextPlaylist(String pageToken);
 
   Future<PlaylistVideoResponse> getPlayListVideos(String playlistId);
+
+  Future<PlaylistVideoResponse> getNextPlayListVideos(
+      {required String playlistID, required String pageToken});
 }
 
 class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
@@ -20,7 +24,8 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
   Future<PlaylistResponse> getPlaylist() async {
     String part = "snippet,contentDetails";
     var response = await client.get(
-        Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10'),
+        Uri.parse(
+            '$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10'),
         headers: headers);
 
     if (response.statusCode.toString().startsWith("2")) {
@@ -31,12 +36,12 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
     }
   }
 
-
   @override
   Future<PlaylistResponse> getNextPlaylist(String pageToken) async {
     String part = "snippet,contentDetails";
     var response = await client.get(
-        Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10&pageToken=$pageToken'),
+        Uri.parse(
+            '$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=$part&maxResults=10&pageToken=$pageToken'),
         headers: headers);
 
     if (response.statusCode.toString().startsWith("2")) {
@@ -51,16 +56,36 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
   Future<PlaylistVideoResponse> getPlayListVideos(String playlistID) async {
     String part = "snippet";
     var response = await client.get(
-        Uri.parse('$baseUrl/playlistItems?playlistId=$playlistID&key=$apIkey&part=$part'),
+        Uri.parse(
+            '$baseUrl/playlistItems?playlistId=$playlistID&key=$apIkey&part=$part'),
         headers: headers);
 
     if (response.statusCode.toString().startsWith("2")) {
       var playlistVideoResponse = playlistVideoResponseFromJson(response.body);
       return playlistVideoResponse;
     } else {
-      print('Erro main');
       throw ServerException();
     }
   }
 
+  @override
+  Future<PlaylistVideoResponse> getNextPlayListVideos(
+      {required String playlistID, required String pageToken}) async {
+    String part = "snippet";
+    print(playlistID);
+    print(pageToken);
+    var response = await client.get(
+        Uri.parse(
+            '$baseUrl/playlistItems?pageToken=$pageToken&playlistId=$playlistID&key=$apIkey&part=$part'),
+        headers: headers);
+    print(response.statusCode);
+
+    if (response.statusCode.toString().startsWith("2")) {
+      print(response.statusCode);
+      var playlistVideoResponse = playlistVideoResponseFromJson(response.body);
+      return playlistVideoResponse;
+    } else {
+      throw ServerException();
+    }
+  }
 }

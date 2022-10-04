@@ -31,7 +31,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    final provider = ref.watch(getVideosNotifierProvider.notifier);
 
     return DefaultTabController(
       length: 3,

@@ -14,6 +14,7 @@ import 'package:youtube_data_api/features/presentation/notifier/get_videos/get_v
 
 import '../../../service_locator.dart';
 import '../../domain/usecase/get_next_playlist.dart';
+import '../../domain/usecase/get_next_playlist_videos.dart';
 import '../../domain/usecase/get_next_videos.dart';
 import '../../domain/usecase/get_playlist_videos.dart';
 import '../notifier/get_playlist_videos/get_playlist_videos_notifier.dart';
@@ -57,10 +58,14 @@ final getPlaylistNotifierProvider =
 final getPlaylistVideosProvider =
     Provider<GetPlaylistVideos>((ref) => GetPlaylistVideos(sl()));
 
+final getNextPlaylistVideosProvider =
+    Provider<GetNextPlaylistVideos>((ref) => GetNextPlaylistVideos(sl()));
+
 final getPlaylistVideosNotifierProvider =
     StateNotifierProvider<GetPlaylistVideosNotifier, GetPlaylistVideosState>(
-        (ref) =>
-            GetPlaylistVideosNotifier(ref.watch(getPlaylistVideosProvider)));
+        (ref) => GetPlaylistVideosNotifier(
+            getPlaylistVideos: ref.watch(getPlaylistVideosProvider),
+            getNextPlaylistVideos: ref.watch(getNextPlaylistVideosProvider)));
 
 final getSearchProvider =
     Provider<GetSearchResults>((ref) => GetSearchResults(sl()));

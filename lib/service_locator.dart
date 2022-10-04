@@ -16,6 +16,8 @@ import 'package:youtube_data_api/features/domain/repository/playlist_repository.
 import 'package:youtube_data_api/features/domain/usecase/add_to_search.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_channel.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_local_searches.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_next_playlist.dart';
+import 'package:youtube_data_api/features/domain/usecase/get_next_playlist_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_search_results.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_videos.dart';
 import 'package:youtube_data_api/features/domain/usecase/get_playlist_videos.dart';
@@ -65,8 +67,6 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<GetNextVideos>(() => GetNextVideos(sl()));
 
-  sl.registerLazySingleton<HomeViewModel>(() => HomeViewModel(sl()));
-
   //Playlist
 
   sl.registerLazySingleton<PlaylistRemoteDataSource>(() => PlaylistRemoteDatasourceImpl(sl()));
@@ -75,9 +75,14 @@ Future<void> setUpLocator() async {
 
   sl.registerLazySingleton<GetPlaylist>(() => GetPlaylist(sl()));
 
+  sl.registerLazySingleton<GetNextPlaylist>(() => GetNextPlaylist(sl()));
+
+
   //Playlist Videos
 
   sl.registerLazySingleton<GetPlaylistVideos>(() => GetPlaylistVideos(sl()));
+
+  sl.registerLazySingleton<GetNextPlaylistVideos>(() => GetNextPlaylistVideos(sl()));
 
   // Search
   sl.registerLazySingleton<SearchRemoteDatasource>(() => SearchRemoteDatasourceImpl(sl()));

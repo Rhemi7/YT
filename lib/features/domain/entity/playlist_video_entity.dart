@@ -9,6 +9,7 @@ class PlaylistVideoEntity extends Equatable {
     this.kind,
     this.etag,
     this.nextPageToken,
+    this.prevPageToken,
     this.items,
     this.pageInfo,
   });
@@ -16,10 +17,11 @@ class PlaylistVideoEntity extends Equatable {
   final String? kind;
   final String? etag;
   final String? nextPageToken;
+  final String? prevPageToken;
   final List<Item>? items;
   final PageInfo? pageInfo;
 
   @override
   // TODO: implement props
-  List<Object?> get props => [kind, etag, nextPageToken, items, pageInfo];
+  List<Object?> get props => [kind, etag, nextPageToken, items, pageInfo, prevPageToken];
 }
