@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -34,9 +35,12 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
     if (searchController.text.isEmpty) {
       ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
     } else {
-      ref
-          .watch(getSearchNotifierProvider.notifier)
-          .getSearch(searchController.text);
+      Timer(const Duration(microseconds: 500), () {
+        ref
+            .watch(getSearchNotifierProvider.notifier)
+            .getSearch(searchController.text);
+      });
+
     }
   }
 
@@ -64,9 +68,13 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
                   AppTextfield(
                     searchController: searchController,
                     onChanged: (value) {
-                      // if (searchController.text.isEmpty) {
-                      //   ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
-                      // }
+                      if (value.isEmpty) {
+                        ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
+                        setState(() {
+
+                        });
+                      }
+
                     },
                   ),
                 ],

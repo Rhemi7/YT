@@ -48,7 +48,7 @@ class VideosResponse extends VideosEntity {
       };
 }
 
-class VideoItem {
+class VideoItem extends Equatable {
   VideoItem({
     this.kind,
     this.etag,
@@ -74,9 +74,12 @@ class VideoItem {
         "id": id,
         "snippet": snippet!.toJson(),
       };
+
+  @override
+  List<Object?> get props => [id, etag, snippet, kind];
 }
 
-class Id {
+class Id extends Equatable {
   Id({
     this.kind,
     this.videoId,
@@ -94,9 +97,13 @@ class Id {
         "kind": kind,
         "videoId": videoId,
       };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [kind, videoId];
 }
 
-class Snippet {
+class Snippet extends Equatable {
   Snippet({
     this.publishedAt,
     this.channelId,
@@ -138,9 +145,12 @@ class Snippet {
         "liveBroadcastContent": liveBroadcastContent,
         "publishTime": publishTime!.toIso8601String(),
       };
+
+  @override
+  List<Object?> get props => [publishedAt, channelTitle, channelId, title, thumbnails, liveBroadcastContent, publishTime, description];
 }
 
-class Thumbnails {
+class Thumbnails extends Equatable {
   Thumbnails({
     this.thumbnailsDefault,
     this.medium,
@@ -162,9 +172,13 @@ class Thumbnails {
         "medium": medium!.toJson(),
         "high": high!.toJson(),
       };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [medium, high, thumbnailsDefault];
 }
 
-class Default {
+class Default extends Equatable{
   Default({
     this.url,
     this.width,
@@ -186,6 +200,10 @@ class Default {
         "width": width,
         "height": height,
       };
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [url, width, height];
 }
 
 class PageInfo extends Equatable {
