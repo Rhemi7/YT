@@ -1,5 +1,7 @@
 # youtube_data_api
 
+[![Dart](https://github.com/Rhemi7/YT/actions/workflows/dart.yml/badge.svg)](https://github.com/Rhemi7/YT/actions/workflows/dart.yml)
+
 A new Flutter project that interacts with the Youtube Data API
 
 ## Getting Started
