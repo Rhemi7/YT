@@ -19,6 +19,9 @@ void main() {
 
   String playlistID = "PLOU2XLYxmsIIjHK9mEgLey-CaFcajdUBX";
 
+  String pageToken = "CBKQAA";
+
+
 
   mockRemoteDataSource = MockGetPlaylistRemoteDataSource();
   mockNetworkInfo = MockNetworkInfo();
@@ -107,6 +110,45 @@ void main() {
           verify(mockRemoteDataSource.getPlayListVideos(playlistID));
 
           expect(result, equals(Right(testPlaylistVideoModel)));
+        },
+      );
+    });
+  });
+
+  group("Get Next Playlist", () {
+    final testPlaylistModel = PlaylistResponse(
+        kind: "youtube#playlistListResponse",
+        etag: "uzCxNou-1Q58M0GBb3IQGvzET1E",
+        nextPageToken: "CBkQAA",
+        prevPageToken: "CDHSTE",
+        pageInfo: PageInfo(totalResults: 164, resultsPerPage: 25),
+        items:  const []);
+
+    test(
+      'should check if the device is online',
+          () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        // act
+        await repository.getNextPlaylist(pageToken);
+        // assert
+        verify(mockNetworkInfo.isConnected);
+      },
+    );
+
+    runTestsOnline(() {
+      test(
+        'should return remote data when the call is successful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getNextPlaylist(pageToken))
+              .thenAnswer((_) async => testPlaylistModel);
+          // act
+          final result = await repository.getNextPlaylist(pageToken);
+          // assert
+          verify(mockRemoteDataSource.getNextPlaylist(pageToken));
+
+          expect(result, equals(Right(testPlaylistModel)));
         },
       );
     });
