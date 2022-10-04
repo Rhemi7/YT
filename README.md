@@ -1,6 +1,7 @@
 # youtube_data_api
 
-[![Dart](https://github.com/Rhemi7/YT/actions/workflows/dart.yml/badge.svg)](https://github.com/Rhemi7/YT/actions/workflows/dart.yml)
+[![Dart](https://github.com/Rhemi7/YT/actions/workflows/dart.yml/badge.svg)](https://github.com/Rhemi7/YT/actions/workflows/dart.yml)  [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
 
 A new Flutter project that interacts with the Youtube Data API
 
