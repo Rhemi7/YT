@@ -6,7 +6,7 @@ import '../../../utils/margin.dart';
 import '../../../utils/resolution.dart';
 
 class PlaylistTileWidget extends StatelessWidget {
-  final Item playlist;
+  final PlaylistItem playlist;
   const PlaylistTileWidget({
     Key? key,
     required this.playlist,

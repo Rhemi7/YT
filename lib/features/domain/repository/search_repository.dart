@@ -7,7 +7,7 @@ abstract class SearchRepository {
 
   Future<Either<Failure, VideosResponse>> getSearch(String query);
 
-  Future<Either<Failure, List<Item>>> getLocalSearch();
+  Future<Either<Failure, List<VideoItem>>> getLocalSearch();
 
-  Future<Either<Failure, List<Item>>> cacheLastSearch(List<Item> searches);
+  Future<Either<Failure, List<VideoItem>>> cacheLastSearch(List<VideoItem> searches);
 }

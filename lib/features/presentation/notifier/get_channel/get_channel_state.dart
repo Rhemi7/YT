@@ -15,7 +15,7 @@ class GetChannelLoading extends GetChannelState {
 }
 
 class GetChannelLoaded extends GetChannelState {
-  final Item? item;
+  final ChannelItem? item;
   GetChannelLoaded({this.item});
 }
 

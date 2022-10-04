@@ -15,7 +15,7 @@ class GetVideosLoading extends GetVideosState {
 }
 
 class GetVideosLoaded extends GetVideosState {
-  final List<Item>? items;
+  final List<VideoItem>? items;
   const GetVideosLoaded(this.items);
 }
 

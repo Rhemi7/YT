@@ -17,7 +17,7 @@ class PlaylistEntity extends Equatable {
   final String? nextPageToken;
   final String? prevPageToken;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<PlaylistItem>? items;
 
   @override
   // TODO: implement props

@@ -16,7 +16,7 @@ class VideosEntity extends Equatable {
   final String? nextPageToken;
   final String? regionCode;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<VideoItem>? items;
 
   @override
   // TODO: implement props

@@ -80,7 +80,7 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
                     child: ListView.separated(
                       itemCount: state.items!.length,
                       itemBuilder: (BuildContext context, int i) {
-                        Item res = state.items![i];
+                        VideoItem res = state.items![i];
                         return SearchTile(
                             icon: searchController.text.isEmpty
                                 ? const Icon(Icons.history)

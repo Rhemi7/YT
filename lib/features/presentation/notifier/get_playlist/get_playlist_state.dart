@@ -15,7 +15,7 @@ class GetPlaylistLoading extends GetPlaylistState {
 }
 
 class GetPlaylistLoaded extends GetPlaylistState {
-  final List<Item>? items;
+  final List<PlaylistItem>? items;
   GetPlaylistLoaded(this.items);
 }
 

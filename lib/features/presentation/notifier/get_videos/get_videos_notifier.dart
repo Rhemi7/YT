@@ -9,8 +9,8 @@ import 'get_videos_state.dart';
 class GetVideosNotifier extends StateNotifier<GetVideosState> {
   GetVideos getVideos;
   GetNextVideos getNextVideos;
-  List<Item> _videosList = [];
-  List<Item> get videosList => _videosList;
+  List<VideoItem> _videosList = [];
+  List<VideoItem> get videosList => _videosList;
 
   String nextPageToken = "";
   GetVideosNotifier({required this.getVideos, required this.getNextVideos})

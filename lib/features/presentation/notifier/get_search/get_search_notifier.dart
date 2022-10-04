@@ -38,10 +38,10 @@ class GetSearchNotifier extends StateNotifier<GetSearchState> {
     });
   }
 
-  List<Item> _localItems = [];
-  List<Item> get localItems => _localItems;
+  List<VideoItem> _localItems = [];
+  List<VideoItem> get localItems => _localItems;
 
-  addToLocalSearch(Item item) async {
+  addToLocalSearch(VideoItem item) async {
     var result = await getLocalSearches(NoParams());
     result.fold((failure) {
       state = GetSearchError(mapFailureToMessage(failure));

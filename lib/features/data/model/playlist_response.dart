@@ -28,7 +28,7 @@ class PlaylistResponse extends PlaylistEntity {
   final String? nextPageToken;
   final String? prevPageToken;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<PlaylistItem>? items;
 
   factory PlaylistResponse.fromJson(Map<String, dynamic> json) =>
       PlaylistResponse(
@@ -37,7 +37,7 @@ class PlaylistResponse extends PlaylistEntity {
         nextPageToken: json["nextPageToken"],
         prevPageToken: json["prevPageToken"],
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        items: List<PlaylistItem>.from(json["items"].map((x) => PlaylistItem.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,8 +50,8 @@ class PlaylistResponse extends PlaylistEntity {
       };
 }
 
-class Item {
-  Item({
+class PlaylistItem {
+  PlaylistItem({
     this.kind,
     this.etag,
     this.id,
@@ -65,7 +65,7 @@ class Item {
   final Snippet? snippet;
   final ContentDetails? contentDetails;
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory PlaylistItem.fromJson(Map<String, dynamic> json) => PlaylistItem(
         kind: json["kind"],
         etag: json["etag"],
         id: json["id"],

@@ -13,7 +13,7 @@ class GetSearchLoading extends GetSearchState {
 }
 
 class GetSearchLoaded extends GetSearchState {
-  final List<Item>? items;
+  final List<VideoItem>? items;
   const GetSearchLoaded(this.items);
 }
 

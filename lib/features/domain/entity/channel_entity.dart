@@ -11,7 +11,7 @@ class ChannelEntity extends Equatable {
   final String? kind;
   final String? etag;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<ChannelItem>? items;
 
   @override
   List<Object?> get props => [kind, etag, pageInfo, items];

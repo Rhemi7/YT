@@ -200,7 +200,7 @@ class AppErrorWidget extends StatelessWidget {
 }
 
 class MainHomeView extends StatelessWidget {
-  final Item item;
+  final ChannelItem item;
   const MainHomeView({Key? key, required this.item}) : super(key: key);
 
   @override

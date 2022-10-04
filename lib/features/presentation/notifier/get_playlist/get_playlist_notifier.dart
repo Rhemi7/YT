@@ -13,8 +13,8 @@ class GetPlaylistNotifier extends StateNotifier<GetPlaylistState> {
 
   String pageToken = "";
   String firstToken = "";
-  List<Item> _playListList = [];
-  List<Item> get playListList => _playListList;
+  List<PlaylistItem> _playListList = [];
+  List<PlaylistItem> get playListList => _playListList;
 
   GetPlaylistNotifier({required this.getPlaylist, required this.nextPlaylist}) : super(const GetPlaylistInitial());
 

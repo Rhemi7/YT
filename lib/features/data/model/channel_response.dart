@@ -22,13 +22,13 @@ class ChannelResponse extends ChannelEntity {
   final String? kind;
   final String? etag;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<ChannelItem>? items;
 
   factory ChannelResponse.fromJson(Map<String, dynamic> json) => ChannelResponse(
     kind: json["kind"],
     etag: json["etag"],
     pageInfo: PageInfo.fromJson(json["pageInfo"]),
-    items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+    items: List<ChannelItem>.from(json["items"].map((x) => ChannelItem.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -39,8 +39,8 @@ class ChannelResponse extends ChannelEntity {
   };
 }
 
-class Item {
-  Item({
+class ChannelItem {
+  ChannelItem({
     this.kind,
     this.etag,
     this.id,
@@ -58,7 +58,7 @@ class Item {
   final Statistics? statistics;
   final BrandingSettings? brandingSettings;
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory ChannelItem.fromJson(Map<String, dynamic> json) => ChannelItem(
     kind: json["kind"],
     etag: json["etag"],
     id: json["id"],

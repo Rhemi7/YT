@@ -5,12 +5,12 @@ import 'package:youtube_data_api/features/domain/repository/search_repository.da
 
 import '../../data/model/videos_response.dart';
 
-class GetLocalSearch extends UseCase<List<Item>, NoParams> {
+class GetLocalSearch extends UseCase<List<VideoItem>, NoParams> {
   SearchRepository searchRepository;
   GetLocalSearch(this.searchRepository);
 
   @override
-  Future<Either<Failure, List<Item>>> call(NoParams params) async {
+  Future<Either<Failure, List<VideoItem>>> call(NoParams params) async {
     return await searchRepository.getLocalSearch();
   }
 

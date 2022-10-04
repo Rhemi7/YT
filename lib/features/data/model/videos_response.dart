@@ -27,7 +27,7 @@ class VideosResponse extends VideosEntity {
   final String? nextPageToken;
   final String? regionCode;
   final PageInfo? pageInfo;
-  final List<Item>? items;
+  final List<VideoItem>? items;
 
   factory VideosResponse.fromJson(Map<String, dynamic> json) => VideosResponse(
         kind: json["kind"],
@@ -35,7 +35,7 @@ class VideosResponse extends VideosEntity {
         nextPageToken: json["nextPageToken"],
         regionCode: json["regionCode"],
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        items: List<VideoItem>.from(json["items"].map((x) => VideoItem.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,8 +48,8 @@ class VideosResponse extends VideosEntity {
       };
 }
 
-class Item {
-  Item({
+class VideoItem {
+  VideoItem({
     this.kind,
     this.etag,
     this.id,
@@ -61,7 +61,7 @@ class Item {
   final Id? id;
   final Snippet? snippet;
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory VideoItem.fromJson(Map<String, dynamic> json) => VideoItem(
         kind: json["kind"],
         etag: json["etag"],
         id: Id.fromJson(json["id"]),

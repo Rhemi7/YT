@@ -10,7 +10,7 @@ class VideoTileWidget extends StatelessWidget {
   final String? creator;
   final String? date;
   final String? views;
-  final Item? video;
+  final VideoItem? video;
   final void Function()? onTap;
 
   const VideoTileWidget({

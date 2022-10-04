@@ -12,7 +12,7 @@ import '../widgets/playlist_video_tile_widget.dart';
 
 class PlaylistInfoScreen extends ConsumerStatefulWidget {
   static const routeName = "playlist_info_screen";
-  final Item playlistItem;
+  final PlaylistItem playlistItem;
 
   const PlaylistInfoScreen({Key? key, required this.playlistItem})
       : super(key: key);

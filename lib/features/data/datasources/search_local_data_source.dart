@@ -7,9 +7,9 @@ import '../../../core/error/failure.dart';
 import '../model/videos_response.dart';
 
 abstract class SearchLocalDataSource {
-  Future<List<Item>> getCachedSearches();
+  Future<List<VideoItem>> getCachedSearches();
 
-  Future<void> cacheLastSearch(List<Item> searches);
+  Future<void> cacheLastSearch(List<VideoItem> searches);
 }
 
 class SearchLocalDataSourceImpl implements SearchLocalDataSource {
@@ -18,13 +18,13 @@ class SearchLocalDataSourceImpl implements SearchLocalDataSource {
   final SharedPreferences sharedPreferences;
 
   @override
-  Future<List<Item>> getCachedSearches() {
+  Future<List<VideoItem>> getCachedSearches() {
     try {
       final jsonString = sharedPreferences.getString(cachedSearchString);
       if (jsonString != null) {
         final parsed = json.decode(jsonString);
         return Future.value(
-            parsed.map<Item>((json) => Item.fromJson(json)).toList());
+            parsed.map<VideoItem>((json) => VideoItem.fromJson(json)).toList());
       } else {
         return Future.value([]);
       }
@@ -34,7 +34,7 @@ class SearchLocalDataSourceImpl implements SearchLocalDataSource {
   }
 
   @override
-  Future<void> cacheLastSearch(List<Item> searches) {
+  Future<void> cacheLastSearch(List<VideoItem> searches) {
     return sharedPreferences.setString(
       cachedSearchString,
       json.encode(List<dynamic>.from(searches.map((x) => x.toJson()))),

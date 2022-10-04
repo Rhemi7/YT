@@ -28,7 +28,7 @@ class SearchRepositoryImpl implements SearchRepository {
   }
 
   @override
-  Future<Either<Failure, List<Item>>> cacheLastSearch(List<Item> searches) async  {
+  Future<Either<Failure, List<VideoItem>>> cacheLastSearch(List<VideoItem> searches) async  {
     try {
       await localDataSource.cacheLastSearch(searches);
       return Right(searches);
@@ -38,7 +38,7 @@ class SearchRepositoryImpl implements SearchRepository {
   }
 
   @override
-  Future<Either<Failure, List<Item>>> getLocalSearch() async {
+  Future<Either<Failure, List<VideoItem>>> getLocalSearch() async {
     try {
       final local = await localDataSource.getCachedSearches();
       return Right(local);
