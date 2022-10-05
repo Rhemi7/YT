@@ -44,6 +44,8 @@ Folder Structure
      - domain: represents bridge between the data layer and presentation layer, here all abstractions are made before being sent to the presentation layer
      - presentation: includes all classes and methods that make up the screens/pages of the app.
      
+ The architecture used in developing the project is the Clean Code Architecture.
+     
 ## Plugins
 | Name | Description |
 | --- | --- |
