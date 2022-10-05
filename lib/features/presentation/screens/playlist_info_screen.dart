@@ -49,7 +49,6 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: const Color(0xff212121),
-
       body: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
         final state = ref.watch(getPlaylistVideosNotifierProvider);

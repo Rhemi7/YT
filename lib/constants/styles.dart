@@ -11,6 +11,10 @@ class AppStyle {
   static const headingText =  TextStyle(
   fontWeight: FontWeight.w700, fontSize: 17);
 
+  static const tabText = TextStyle(
+    fontWeight: FontWeight.w600,
+  );
+
   static const modalBottomSheetCurve = RoundedRectangleBorder(
     borderRadius: BorderRadius.only(
       topRight: Radius.circular(10),

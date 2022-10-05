@@ -51,35 +51,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         body: Column(
           children: [
             TabBar(
-              // controller: tabController,
               isScrollable: true,
               indicatorColor: Colors.white,
               tabs: [
                 Tab(
                   child: Text(
                     home,
-                    style: TextStyle(
-                      fontSize: Resolution.textSize(context, 20),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppStyle.tabText.copyWith(fontSize: Resolution.textSize(context, 20),),
+
                   ),
                 ),
                 Tab(
                   child: Text(
                     videos,
-                    style: TextStyle(
-                      fontSize: Resolution.textSize(context, 20),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppStyle.tabText.copyWith(fontSize: Resolution.textSize(context, 20),),
+
                   ),
                 ),
                 Tab(
                   child: Text(
                     playlists,
-                    style: TextStyle(
-                      fontSize: Resolution.textSize(context, 20),
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppStyle.tabText.copyWith(fontSize: Resolution.textSize(context, 20),),
                   ),
                 ),
               ],
