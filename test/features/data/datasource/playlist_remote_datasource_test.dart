@@ -25,7 +25,7 @@ void main() {
   var nextPlaylist = Uri.parse('$baseUrl/playlists?channelId=$channelID&key=$apIkey&part=snippet,contentDetails&maxResults=10&pageToken=$pageToken');
 
   var playlistVidUrl = Uri.parse(
-      '$baseUrl/playlistItems?playlistId=$playlistId&key=$apIkey&part=snippet');
+      '$baseUrl/playlistItems?playlistId=$playlistId&key=$apIkey&part=snippet&maxResults=10');
 
   setUp(() {
     client = MockClient();

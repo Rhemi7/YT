@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'Youtube Data Api',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
+        backgroundColor: const Color(0xff212121),
           appBarTheme: const AppBarTheme(
         elevation: 0.0,
-        // backgroundColor:
+        backgroundColor: Color(0xff212121)
       )),
       home: const SplashScreen(),
     );

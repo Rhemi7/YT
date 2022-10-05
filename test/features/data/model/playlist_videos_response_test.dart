@@ -10,6 +10,7 @@ void main() {
       kind: "youtube#playlistItemListResponse",
       etag: "JLBFmIcpInGbggWalPwqWLJZyVM",
       nextPageToken: "EAAaBlBUOkNBVQ",
+      prevPageToken: "EAAaBlBUOkNBVA",
       pageInfo: PageInfo(totalResults: 15, resultsPerPage: 5),
       items:  []);
 
@@ -40,6 +41,7 @@ void main() {
           "kind": "youtube#playlistItemListResponse",
           "etag": "JLBFmIcpInGbggWalPwqWLJZyVM",
           "nextPageToken": "EAAaBlBUOkNBVQ",
+          "prevPageToken": "EAAaBlBUOkNBVA",
           "items": [],
           "pageInfo": {
             "totalResults": 15,

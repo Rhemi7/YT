@@ -57,7 +57,7 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
     String part = "snippet";
     var response = await client.get(
         Uri.parse(
-            '$baseUrl/playlistItems?playlistId=$playlistID&key=$apIkey&part=$part'),
+            '$baseUrl/playlistItems?playlistId=$playlistID&key=$apIkey&part=$part&maxResults=10'),
         headers: headers);
 
     if (response.statusCode.toString().startsWith("2")) {
@@ -74,7 +74,7 @@ class PlaylistRemoteDatasourceImpl implements PlaylistRemoteDataSource {
     String part = "snippet";
     var response = await client.get(
         Uri.parse(
-            '$baseUrl/playlistItems?pageToken=$pageToken&playlistId=$playlistID&key=$apIkey&part=$part'),
+            '$baseUrl/playlistItems?pageToken=$pageToken&playlistId=$playlistID&key=$apIkey&part=$part&maxResults=10'),
         headers: headers);
     if (response.statusCode.toString().startsWith("2")) {
       var playlistVideoResponse = playlistVideoResponseFromJson(response.body);

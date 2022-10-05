@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen>
         controller.reverse(from: 5.0);
       } else if (status == AnimationStatus.dismissed) {
         controller.forward();
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()), (route) => false);
       }
     });
     controller.addListener(() {

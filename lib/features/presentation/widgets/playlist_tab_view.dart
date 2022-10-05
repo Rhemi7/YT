@@ -33,6 +33,12 @@ class _PlaylistTabViewState extends ConsumerState<PlaylistTabView> {
   }
 
   @override
+  void dispose() {
+    playlistTabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {

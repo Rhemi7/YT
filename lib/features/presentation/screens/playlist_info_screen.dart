@@ -48,6 +48,8 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      backgroundColor: const Color(0xff212121),
+
       body: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
         final state = ref.watch(getPlaylistVideosNotifierProvider);
@@ -77,7 +79,7 @@ class _PlaylistInfoScreenState extends ConsumerState<PlaylistInfoScreen> {
                       fontSize: Resolution.textSize(context, 17)),
                 ),
               ),
-              const YMargin(10),
+              const YMargin(15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(

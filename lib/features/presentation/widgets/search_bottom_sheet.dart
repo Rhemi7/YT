@@ -29,6 +29,12 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   onSearch() {
     if (searchController.text.isEmpty) {
       ref.watch(getSearchNotifierProvider.notifier).getLocalSearch();
@@ -43,78 +49,77 @@ class _SearchBottomSheetState extends ConsumerState<SearchBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-      child: Container(
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10), topLeft: Radius.circular(10))),
-        height: Resolution.screenHeight(context, percent: 0.8),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                  AppTextfield(
-                    searchController: searchController,
-                    onChanged: (value) {
-                      if (value.isEmpty) {
-                        ref
-                            .watch(getSearchNotifierProvider.notifier)
-                            .getLocalSearch();
-                        setState(() {});
-                      }
-                    },
-                  ),
-                ],
-              ),
-              const YMargin(15),
-              Consumer(builder:
-                  (BuildContext context, WidgetRef ref, Widget? child) {
-                final state = ref.watch(getSearchNotifierProvider);
-                if (state is GetSearchLoaded) {
-                  return Expanded(
-                    child: ListView.separated(
-                      itemCount: state.items!.length,
-                      itemBuilder: (BuildContext context, int i) {
-                        VideoItem res = state.items![i];
-                        return SearchTile(
-                            icon: searchController.text.isEmpty
-                                ? const Icon(Icons.history)
-                                : const Icon(Icons.search),
-                            res: res,
-                            onTap: () {
-                              ref
-                                  .watch(getSearchNotifierProvider.notifier)
-                                  .addToLocalSearch(res);
+    return Container(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10), topLeft: Radius.circular(10))),
+      height: Resolution.screenHeight(context, percent: 1),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const YMargin(30),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back_ios),
+                ),
+                AppTextfield(
+                  searchController: searchController,
+                  onChanged: (value) {
+                    if (value.isEmpty) {
+                      ref
+                          .watch(getSearchNotifierProvider.notifier)
+                          .getLocalSearch();
+                      setState(() {});
+                    }
+                  },
+                ),
+                const XMargin(10),
+                const Icon(Icons.search)
+              ],
+            ),
+            const YMargin(15),
+            Consumer(
+                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+              final state = ref.watch(getSearchNotifierProvider);
+              if (state is GetSearchLoaded) {
+                return Expanded(
+                  child: ListView.separated(
+                    itemCount: state.items!.length,
+                    itemBuilder: (BuildContext context, int i) {
+                      VideoItem res = state.items![i];
+                      return SearchTile(
+                          icon: searchController.text.isEmpty
+                              ? const Icon(Icons.history)
+                              : const Icon(Icons.search),
+                          res: res,
+                          onTap: () {
+                            ref
+                                .watch(getSearchNotifierProvider.notifier)
+                                .addToLocalSearch(res);
 
-                              searchController.clear();
+                            searchController.clear();
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PlayVideoScreen(
-                                          videoId:
-                                              res.id!.videoId.toString())));
-                            });
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const YMargin(20);
-                      },
-                    ),
-                  );
-                }
-                return const SizedBox.shrink();
-              }),
-            ],
-          ),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PlayVideoScreen(
+                                        videoId: res.id!.videoId.toString())));
+                          });
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const YMargin(20);
+                    },
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            }),
+          ],
         ),
       ),
     );

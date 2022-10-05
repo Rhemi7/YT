@@ -25,6 +25,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: const Color(0xff212121),
+
         appBar: AppBar(
           title: Text(
             channelName.toUpperCase(),
